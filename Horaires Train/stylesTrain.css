@@ -269,6 +269,12 @@ body{
   text-align: left;
 }
 
+.departures-body tbody td:nth-child(5){
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 50px;
+}
+
 
 
 /* Clock icon class: ensure it doesn't add extra spacing */
@@ -291,12 +297,14 @@ body{
 
 /*Affichage des status des trains : à l'heure, retardé, */
 .status{
-  display:flex;
-  padding:6px 8px;
+  display: flex;
+  text-align: inside;
+  padding: 16px;
   border-radius:999px;
-  font-size:13px;
-  width: 271px;
+  font-size:17px;
+  border-width: 271px;
   height: 56px;
+  justify-content: center;
 }
 
 .status.ontime{ background:rgba(22,163,74,0.12); color:var(--success); }

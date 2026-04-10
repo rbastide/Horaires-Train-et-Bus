@@ -1,0 +1,54 @@
+<section id="prochains-departs" aria-labelledby="prochains-departs-title" class="departures-section">
+        <article class="departures-list">
+          <!-- header-only table (no border) -->
+          <table class="departures-head" aria-hidden="true">
+            <colgroup>
+              <col style="width:18%">
+              <col style="width:12%">
+              <col style="width:18%">
+              <col style="width:40%">
+              <col style="width:12%">
+            </colgroup>
+            <thead>
+              <tr>
+                <th>Lignes</th>
+                <th>Quais</th>
+                <th>Durée</th>
+                <th>Heures Départ/Arrivé</th>
+                <th>Retard</th>
+              </tr>
+            </thead>
+          </table>
+
+          <!-- body table wrapped so we can draw a single border around it -->
+          <div class="tbody-wrapper">
+            <table class="departures-body" aria-describedby="prochains-departs-title">
+              <colgroup>
+                <col style="width:18%">
+                <col style="width:12%">
+                <col style="width:18%">
+                <col style="width:40%">
+                <col style="width:12%">
+              </colgroup>
+              <tbody>
+                <tr>
+                  <td>
+                    <p class="LignesText">D31</p>
+                    <img src="Logo/Train.png" alt="Logo - Train Lignes" class="TableauLignesTrain">
+                  </td>
+                  <td><p class="Quais">Voie D</p></td>
+                  <td>
+                    <img src="Logo/Horloge.png" alt="Logo - Horloge" class="Horloge">
+                    <p>1h37</p>
+                  </td>
+                  <td>
+                    <p>17:04 Périgueux</p>
+                    <p>18:37 Bordeaux Saint-Jean</p>
+                  </td>
+                  <td><span class="status ontime">À l'heure</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </section>

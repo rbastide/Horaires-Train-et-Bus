@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Horaires - Train et Bus</title>
+    <!-- Base HTML generated from Figma design (no CSS) -->
+  </head>
+  <body>
+    <header>
+      <div class="brand" role="banner">
+        <img src="" alt="Logo - Train et Bus" />
+        <h1>Horaires</h1>
+      </div>
+      <nav aria-label="Navigation principale">
+        <ul>
+          <li><a href="#recherche">Recherche</a></li>
+          <li><a href="#prochains-departs">Prochains départs</a></li>
+          <li><a href="#ligne">Lignes</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Section de recherche / filtre -->
+      <section id="recherche" aria-labelledby="recherche-title">
+        <h2 id="recherche-title">Rechercher un trajet</h2>
+        <form action="#" method="get" role="search">
+          <label for="from">Départ</label>
+          <input id="from" name="from" type="text" placeholder="Gare ou adresse" />
+
+          <label for="to">Arrivée</label>
+          <input id="to" name="to" type="text" placeholder="Gare ou adresse" />
+
+          <label for="date">Date</label>
+          <input id="date" name="date" type="date" />
+
+          <label for="time">Heure</label>
+          <input id="time" name="time" type="time" />
+
+          <button type="submit">Rechercher</button>
+        </form>
+      </section>
+
+      <!-- Section des prochains départs -->
+      <section id="prochains-departs" aria-labelledby="prochains-departs-title">
+        <h2 id="prochains-departs-title">Prochains départs</h2>
+        <article class="departures-list">
+          <table aria-describedby="prochains-departs-title">
+            <thead>
+              <tr>
+                <th>Heure</th>
+                <th>Destination</th>
+                <th>Ligne</th>
+                <th>Quai</th>
+                <th>Statut</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>08:12</td>
+                <td>Libourne</td>
+                <td>TER 1234</td>
+                <td>2</td>
+                <td>À l'heure</td>
+              </tr>
+              <tr>
+                <td>08:28</td>
+                <td>Périgueux</td>
+                <td>TER 5678</td>
+                <td>1</td>
+                <td>Retard 5 min</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+      </section>
+
+      <!-- Section liste des lignes / filtres complémentaires -->
+      <section id="ligne" aria-labelledby="ligne-title">
+        <h2 id="ligne-title">Lignes</h2>
+        <ul>
+          <li>
+            <h3>TER 1234</h3>
+            <p>Direction Libourne — Arrêts principaux : ...</p>
+          </li>
+          <li>
+            <h3>TER 5678</h3>
+            <p>Direction Périgueux — Arrêts principaux : ...</p>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2026 Horaires - Train et Bus</p>
+      <p>
+        <a href="#">Contact</a> | <a href="#">Aide</a>
+      </p>
+    </footer>
+  </body>
+</html>

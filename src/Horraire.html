@@ -5,30 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Horaires - Train et Bus</title>
     <!-- Base HTML generated from Figma design (CSS linked below) -->
-    <link rel="stylesheet" href="stylesTrain.css">
-    <script src="../Scripts/Loaders/headerLoad.js" ></script>
+    <link rel="stylesheet" href="GlobalCSS.css">
+    <script src="Scripts/Loaders/headerLoad.js"></script>
+    <script src="Scripts/Loaders/trainSectionLoad.js"></script>
+    <script src="Scripts/Loaders/busSectionLoad.js"></script>
+    <script src="Scripts/Loaders/sectionRotate.js"></script>
+
   </head>
   <body>
+    <header>
       <div id="header-placeholder"></div>
       <script>
         loadHeader();
       </script>
+      </header>
 
 
     <main class="container">
 
       <!-- Première section ou on affiche des informations seulement -->
-      <div class="top-row">
-        <section id="Consultation" aria-labelledby="consultation-title" class="consultation-section">
-          <h2 id="consultation-title">Horaires en temps réel</h2>
-          <p>Consultez les prochains départs de train</p>
-        </section>
 
-        <section id="Infos-Trains" aria-labelledby="infos-trains-title" class="infos-trains-section">
-          <img src="../Logo/Train.png" alt="Logo - Train Lignes" class="infos-trains-logo">
-          <h1 class="infos-trains-title">Trains</h1>
-        </section>
-      </div>
+      <!-- Section Train chargée dynamiquement -->
+      <div id="train-section-placeholder"></div>
+      <!-- Section Bus chargée dynamiquement -->
+      <div id="bus-section-placeholder"></div>
 
 
 
@@ -69,11 +69,11 @@
                 <tr>
                   <td>
                     <p class="LignesText">D31</p>
-                    <img src="../Logo/Train.png" alt="Logo - Train Lignes" class="TableauLignesTrain">
+                    <img src="Logo/Train.png" alt="Logo - Train Lignes" class="TableauLignesTrain">
                   </td>
                   <td><p class="Quais">Voie D</p></td>
                   <td>
-                    <img src="../Logo/Horloge.png" alt="Logo - Horloge" class="Horloge">
+                    <img src="Logo/Horloge.png" alt="Logo - Horloge" class="Horloge">
                     <p>1h37</p>
                   </td>
                   <td>

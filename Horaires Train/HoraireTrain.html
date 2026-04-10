@@ -4,46 +4,33 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Horaires - Train et Bus</title>
-    <!-- Base HTML generated from Figma design (no CSS) -->
+    <!-- Base HTML generated from Figma design (CSS linked below) -->
+    <link rel="stylesheet" href="stylesTrain.css">
   </head>
   <body>
-    <header>
+    <header class="site-header">
       <div class="brand" role="banner">
-        <img src="" alt="Logo - Train et Bus" />
-        <h1>Horaires</h1>
+        <h1 class="site-title">Grand Périgueux Mobilités</h1>
       </div>
-      <nav aria-label="Navigation principale">
+      <nav class="main-nav" aria-label="Navigation principale">
         <ul>
-          <li><a href="#recherche">Recherche</a></li>
-          <li><a href="#prochains-departs">Prochains départs</a></li>
-          <li><a href="#ligne">Lignes</a></li>
+          <li><img src="../Logo/Péribus.png" alt="Logo - Péribus" class="logo" /></li>
+          <li><img src="../Logo/Périmouv.png" alt="Logo - Périmouv" class="logo" /></li>
+          <li><img src="../Logo/LeGrandPerigueux.png" alt="Logo - Le Grand Périgueux" class="logo" /></li>
         </ul>
       </nav>
     </header>
 
-    <main>
+    <main class="container">
       <!-- Section de recherche / filtre -->
-      <section id="recherche" aria-labelledby="recherche-title">
-        <h2 id="recherche-title">Rechercher un trajet</h2>
-        <form action="#" method="get" role="search">
-          <label for="from">Départ</label>
-          <input id="from" name="from" type="text" placeholder="Gare ou adresse" />
-
-          <label for="to">Arrivée</label>
-          <input id="to" name="to" type="text" placeholder="Gare ou adresse" />
-
-          <label for="date">Date</label>
-          <input id="date" name="date" type="date" />
-
-          <label for="time">Heure</label>
-          <input id="time" name="time" type="time" />
-
-          <button type="submit">Rechercher</button>
-        </form>
+      <section id="Consultation" aria-labelledby="consultation-title" class="consultation-section">
+        <h2 id="consultation-title">Horaires en temps réel</h2>
+        <p>Consultez les prochains départs de train</p>
+        
       </section>
 
       <!-- Section des prochains départs -->
-      <section id="prochains-departs" aria-labelledby="prochains-departs-title">
+      <section id="prochains-departs" aria-labelledby="prochains-departs-title" class="departures-section">
         <h2 id="prochains-departs-title">Prochains départs</h2>
         <article class="departures-list">
           <table aria-describedby="prochains-departs-title">
@@ -62,14 +49,14 @@
                 <td>Libourne</td>
                 <td>TER 1234</td>
                 <td>2</td>
-                <td>À l'heure</td>
+                <td><span class="status ontime">À l'heure</span></td>
               </tr>
               <tr>
                 <td>08:28</td>
                 <td>Périgueux</td>
                 <td>TER 5678</td>
                 <td>1</td>
-                <td>Retard 5 min</td>
+                <td><span class="status delayed">Retard 5 min</span></td>
               </tr>
             </tbody>
           </table>
@@ -77,7 +64,7 @@
       </section>
 
       <!-- Section liste des lignes / filtres complémentaires -->
-      <section id="ligne" aria-labelledby="ligne-title">
+      <section id="ligne" aria-labelledby="ligne-title" class="lines-section">
         <h2 id="ligne-title">Lignes</h2>
         <ul>
           <li>

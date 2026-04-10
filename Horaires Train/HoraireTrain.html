@@ -22,12 +22,17 @@
     </header>
 
     <main class="container">
-      <!-- Section de recherche / filtre -->
-      <section id="Consultation" aria-labelledby="consultation-title" class="consultation-section">
-        <h2 id="consultation-title">Horaires en temps réel</h2>
-        <p>Consultez les prochains départs de train</p>
-        
-      </section>
+      <div class="top-row">
+        <section id="Consultation" aria-labelledby="consultation-title" class="consultation-section">
+          <h2 id="consultation-title">Horaires en temps réel</h2>
+          <p>Consultez les prochains départs de train</p>
+        </section>
+
+        <section id="Infos-Trains" aria-labelledby="infos-trains-title" class="infos-trains-section">
+          <img src="../Logo/Train.png" alt="Logo - Train Lignes" class="infos-trains-logo">
+          <h1 class="infos-trains-title">Trains</h1>
+        </section>
+      </div>
 
       <!-- Section des prochains départs -->
       <section id="prochains-departs" aria-labelledby="prochains-departs-title" class="departures-section">
@@ -36,19 +41,29 @@
           <table aria-describedby="prochains-departs-title">
             <thead>
               <tr>
-                <th>Heure</th>
-                <th>Destination</th>
-                <th>Ligne</th>
-                <th>Quai</th>
-                <th>Statut</th>
+                <th>Lignes</th>
+                <th>Quais</th>
+                <th>Durée</th>
+                <th>Heures Départ/Arrivé</th>
+                <th>Retard</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>08:12</td>
-                <td>Libourne</td>
-                <td>TER 1234</td>
-                <td>2</td>
+                <td>
+                  <p>D31</p>
+                  <img src="../Logo/Train.png" alt="Logo - Train Lignes" class="TableauLignes">
+                </td>
+                <td>Voie D</td>
+                <td>
+                  <img src="../Logo/Horloge.png" alt="Logo - Horloge" class="Horloge">
+                  <p>1h37</p>
+                </td>
+                <td>
+                  
+                  
+
+                </td>
                 <td><span class="status ontime">À l'heure</span></td>
               </tr>
               <tr>

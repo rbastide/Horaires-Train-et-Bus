@@ -21,7 +21,10 @@
       </nav>
     </header>
 
+
     <main class="container">
+
+      <!-- Première section ou on affiche des informations seulement -->
       <div class="top-row">
         <section id="Consultation" aria-labelledby="consultation-title" class="consultation-section">
           <h2 id="consultation-title">Horaires en temps réel</h2>
@@ -34,11 +37,20 @@
         </section>
       </div>
 
+
+
       <!-- Section des prochains départs -->
       <section id="prochains-departs" aria-labelledby="prochains-departs-title" class="departures-section">
-        <h2 id="prochains-departs-title">Prochains départs</h2>
         <article class="departures-list">
-          <table aria-describedby="prochains-departs-title">
+          <!-- header-only table (no border) -->
+          <table class="departures-head" aria-hidden="true">
+            <colgroup>
+              <col style="width:18%">
+              <col style="width:12%">
+              <col style="width:18%">
+              <col style="width:40%">
+              <col style="width:12%">
+            </colgroup>
             <thead>
               <tr>
                 <th>Lignes</th>
@@ -48,57 +60,42 @@
                 <th>Retard</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <p>D31</p>
-                  <img src="../Logo/Train.png" alt="Logo - Train Lignes" class="TableauLignes">
-                </td>
-                <td>Voie D</td>
-                <td>
-                  <img src="../Logo/Horloge.png" alt="Logo - Horloge" class="Horloge">
-                  <p>1h37</p>
-                </td>
-                <td>
-                  
-                  
-
-                </td>
-                <td><span class="status ontime">À l'heure</span></td>
-              </tr>
-              <tr>
-                <td>08:28</td>
-                <td>Périgueux</td>
-                <td>TER 5678</td>
-                <td>1</td>
-                <td><span class="status delayed">Retard 5 min</span></td>
-              </tr>
-            </tbody>
           </table>
+
+          <!-- body table wrapped so we can draw a single border around it -->
+          <div class="tbody-wrapper">
+            <table class="departures-body" aria-describedby="prochains-departs-title">
+              <colgroup>
+                <col style="width:18%">
+                <col style="width:12%">
+                <col style="width:18%">
+                <col style="width:40%">
+                <col style="width:12%">
+              </colgroup>
+              <tbody>
+                <tr>
+                  <td>
+                    <p class="LignesText">D31</p>
+                    <img src="../Logo/Train.png" alt="Logo - Train Lignes" class="TableauLignesTrain">
+                  </td>
+                  <td><p class="Quais">Voie D</p></td>
+                  <td>
+                    <img src="../Logo/Horloge.png" alt="Logo - Horloge" class="Horloge">
+                    <p>1h37</p>
+                  </td>
+                  <td>
+                    <p>17:04 Périgueux</p>
+                    <p>18:37 Bordeaux Saint-Jean</p>
+                  </td>
+                  <td><span class="status ontime">À l'heure</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </article>
       </section>
 
-      <!-- Section liste des lignes / filtres complémentaires -->
-      <section id="ligne" aria-labelledby="ligne-title" class="lines-section">
-        <h2 id="ligne-title">Lignes</h2>
-        <ul>
-          <li>
-            <h3>TER 1234</h3>
-            <p>Direction Libourne — Arrêts principaux : ...</p>
-          </li>
-          <li>
-            <h3>TER 5678</h3>
-            <p>Direction Périgueux — Arrêts principaux : ...</p>
-          </li>
-        </ul>
-      </section>
+     
     </main>
-
-    <footer>
-      <p>© 2026 Horaires - Train et Bus</p>
-      <p>
-        <a href="#">Contact</a> | <a href="#">Aide</a>
-      </p>
-    </footer>
   </body>
 </html>

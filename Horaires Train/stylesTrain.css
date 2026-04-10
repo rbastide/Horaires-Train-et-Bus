@@ -1,3 +1,4 @@
+/*Variables de couleurs utilisés dans le projet*/
 :root{
   --bg-dark: #030830; /* from Figma header */
   --White: White;
@@ -7,6 +8,8 @@
   --accent: #00a7ff;
   --success: #16a34a;
   --warning: #f59e0b;
+  --TextForTrainInfos: #030830;
+
 }
 
 /* Global resets */
@@ -19,6 +22,8 @@ body{
   background:linear-gradient(180deg,var(--White));
 }
 
+
+/* Header */
 .site-header{
   background:var(--bg-dark);
   padding:18px 24px;
@@ -29,17 +34,15 @@ body{
 .brand{display:flex;align-items:center;gap: 18px;}
 .logo{width:153px;height:92px;background:transparent;border-radius:6px}
 .site-title{font-size:32px;margin:0;color: var(--White);font-weight: bold;}
-
-
-
 .main-nav ul{list-style:none;margin:0;padding:0;display:flex;gap:18px}
 .main-nav a{color:var(--muted);text-decoration:none}
 .main-nav a:hover{color:var(--text)}
 
-.container{max-width:100%;margin:24px auto;padding:0 16px}
 
+/* Première section ou on affiche des informations seulement*/
+.container{max-width:100%;margin:24px auto;padding:0 16px}
 .consultation-section{background:rgba(255,255,255,0.03);padding:18px;border-radius:10px;margin-bottom:18px;}
-.consultation-section h2{margin:0 0 12px 0}
+.consultation-section h2{margin:0 0 12px 12px}
 .consultation-form{display:flex;flex-direction:column;gap:8px}
 
 .top-row{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:18px}
@@ -49,29 +52,102 @@ body{
 .infos-trains-title{font-size:65px;margin:0;color: var(--text);font-weight: semi-bold}
 
 
-.form-row{display:flex;flex-direction:column;gap:6px}
-.form-row.compact{flex-direction:row;gap:10px;align-items:center}
-label{font-size:13px;color:var(--muted)}
-input[type="text"],input[type="date"],input[type="time"]{
-  padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:rgba(0,0,0,0.2);color:var(--text);
-}
-.btn-primary{background:var(--accent);color:#001; padding:10px 14px;border-radius:8px;border:none;cursor:pointer;margin-top:6px;width:160px}
+
 
 .departures-section{margin-top:12px}
-.departures-list table{width:100%;border-collapse:collapse}
-.departures-list thead th{ text-align:left;padding:10px;background:transparent;color:var(--muted);font-size:13px;border-bottom:1px solid rgba(255,255,255,0.04)}
-.departures-list tbody td{padding:12px 10px;border-bottom:1px solid rgba(255,255,255,0.02);color:var(--text)}
-.departures-list tbody tr:nth-child(even){background:rgba(255,255,255,0.01)}
+.departures-list table{width:100%;border-collapse:collapse;}
 
+/* header and body tables use fixed layout and full width; colgroups ensure alignment */
+.departures-head,
+.departures-body{
+  width:100%;
+  border-collapse:collapse;
+  table-layout:fixed;
+}
+
+/* wrapper that draws a single 1px border around the body (header remains outside) */
+.tbody-wrapper{
+  border:1px solid var(--text);
+  border-radius: 20px;
+  overflow:hidden;
+  border-spacing: 0;
+}
+
+/* Header styling */
+.departures-list thead th{
+  text-align:left;
+  padding:10px;
+  background:transparent;
+  color:var(--TextForTrainInfos);
+  font-size:16px;
+  font-weight:700;
+}
+
+/* Box-style border around each table row */
+.departures-list tbody td{
+  padding:12px 10px;
+  color:var(--text);
+}
+.departures-body td:first-child{
+  /* center contents (badge + icon) of first column in the body table */
+  display:flex;
+  flex-direction:row; /* place badge and icon side-by-side */
+  align-items:center;
+  gap:10px; /* no space between image and text */
+  text-align:center;
+}
+.departures-list td:first-child > p:first-child{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  box-sizing:border-box;
+  width:59px;
+  height:37px;
+  background:#FF0000;
+  border-radius:8px;
+  padding:8px 16px 4px;
+  margin:0;
+  color:#FFFFFF;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  font-weight:600;
+  font-size:16px;
+  line-height:22px; /* 140% of 16px ≈ 22px */
+}
+
+
+.departures-list tbody tr:nth-child(even) td{background:var(--White)}
+
+/* Fix coins arrondis : appliquer le radius aux cellules d'angle
+  pour éviter que le fond des cellules carrées n'apparaisse */
+.departures-list tbody td{background-clip: padding-box}
+.TableauLignesTrain{width: 50px; height: 50px;}
+.departures-list tbody td:nth-child(3){
+  /* align image and text horizontally in "Durée" column */
+  display:flex;
+  align-items:center;
+  gap:0; /* remove space so image and text are adjacent */
+}
+.departures-list tbody td:nth-child(3) img{
+  display:block;
+  width:36px; /* default, can be adjusted */
+  height:auto;
+  object-fit:contain;
+}
+
+/* Ensure no default margins on images inside table cells */
+.departures-list tbody td img{
+  display:block;
+  margin:0;
+}
+
+
+.Quais{color: var(--TextForTrainInfos);font-size:30px;font-weight: bold;}
+
+
+/*Affichage des status des trains : à l'heure, retardé, */
 .status{display:inline-block;padding:6px 8px;border-radius:999px;font-size:13px}
 .status.ontime{background:rgba(22,163,74,0.12);color:var(--success)}
 .status.delayed{background:rgba(245,158,11,0.12);color:var(--warning)}
-
-.lines-section ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.lines-section li{background:var(--panel);padding:12px;border-radius:8px}
-.lines-section h3{margin:0 0 6px 0}
-
-footer{max-width:980px;margin:22px auto;padding:12px 16px;color:var(--muted);font-size:13px}
 
 
 @media(max-width:700px){

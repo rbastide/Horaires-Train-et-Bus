@@ -13,7 +13,7 @@
   --train-blue:#1d4ed8;
   --bus-red:#e11d2e;
   --delayed-text : #EA2222;
-  --delayed-background: rgb(238,41,90);
+  --delayed: #E47526;
 }
 
 
@@ -137,8 +137,6 @@ body{
   font-weight:semi-bold;
 }
 
-
-
 /* =========================
    TABLEAU (COMMUN)
    ========================= */
@@ -148,22 +146,35 @@ body{
   table-layout:fixed;
 }
 
-.tbody-wrapper{
+.row-wrapper{
   border:1px solid #000;
   border-radius:16px;
-  overflow:hidden;
+  padding:12px;
+  background:#fff;
 }
+
+.row-grid{
+  display:grid;
+  grid-template-columns: 18% 12% 18% 40% 12%;
+  align-items:center;
+}
+
 
 .departures-list thead th{
   padding:10px;
   font-size:36px;
   font-weight:heavy;
   color: var(--TextForTrainInfos);
+  align-items: center;
 }
+
+.departures-list tbody tr{
+  position: relative;
+}
+
 
 .departures-list tbody td{
   padding:12px;
-  vertical-align:middle;
 }
 
 .departures-list tbody tr:nth-child(even){
@@ -231,25 +242,41 @@ body{
 /* =========================
    AUTRES COLONNES
    ========================= */
-.departures-body tbody td:nth-child(2){
-  text-align:center;
-  font-weight: bold;
+.Quais, .Time{
+  align-items:center;
+  justify-content:center;
   font-size: 30px;
-}
-.departures-body tbody td:nth-child(3){
-  text-align:center;
-  vertical-align:center;
   font-weight: bold;
+  gap:8px;
+}
+
+.DepartDelayed p{
+  align-items:center;
+  justify-content:center;
+  font-size: 16px;
+  font-weight: regular;
+  gap:8px;
+  line-height: 0.2;
+}
+
+.DepartDelayed p.delayedTime{
+  color: var(--delayed);
   font-size: 30px;
 }
 
-.departures-body tbody td:nth-child(4),
+.DepartDelayed p.delayedTime + p,
+.DepartDelayed p:not(.delayedTime):has(+ p.delayedTime){
+  text-decoration: line-through;
+}
+
 .departures-body tbody td:nth-child(5){
   white-space:nowrap;
   text-align:center;
   vertical-align:center;
   font-size: 30px;
 }
+
+
 
 /* =========================
    STATUS TRAIN
@@ -267,10 +294,12 @@ body{
 .status.ontime{
   background:rgba(22,163,74,0.15);
   color:var(--success);
+  font-weight: normal;
+
 }
 
 .status.delayed{
   background: rgb(238,41,90,0.15);
   color:var(--delayed-text);
-  
+  font-weight: normal;
 }

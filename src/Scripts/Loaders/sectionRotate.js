@@ -39,7 +39,7 @@ async function initSections() {
 
     console.log('Sections chargées - Rotation chaque 30 secondes');
     // Alterner toutes les 30 secondes
-    setInterval(rotateSection, 300000);
+    setInterval(rotateSection, 30000);
   } catch (err) {
     console.error("Erreur initialisation sections :", err);
   }

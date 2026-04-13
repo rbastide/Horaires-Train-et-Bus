@@ -277,6 +277,32 @@ body{
 }
 
 
+.Arrets, .Destinations{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.DepartTime{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size: 30px;
+  font-weight: medium;
+}
+
+.Attente{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size: 30px;
+  font-weight: medium;
+  gap:8px;
+}
+
+
 
 /* =========================
    STATUS TRAIN

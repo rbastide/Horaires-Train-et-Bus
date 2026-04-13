@@ -8,3 +8,5 @@ async function loadHeader() {
     console.error("Erreur chargement Header.html :", err);
   }
 }
+
+document.addEventListener('DOMContentLoaded', loadHeader);

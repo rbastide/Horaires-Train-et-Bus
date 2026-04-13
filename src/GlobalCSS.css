@@ -134,13 +134,14 @@ body{
   height:171px;
   background:transparent;
   border-radius:6px;
+  
 }
 
 .infos-title{
   font-size:65px;
-  margin:0;
   color:var(--TextForTrainInfos);
   font-weight:semi-bold;
+  padding-right: 200px;
 }
 
 /* =========================

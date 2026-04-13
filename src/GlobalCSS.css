@@ -20,6 +20,7 @@
   --bus-A: #F3E11A;
   --delayed-text : #EA2222;
   --delayed: #E47526;
+  --scheduled-Time: #5DC810;
 }
 
 
@@ -257,6 +258,15 @@ body{
   background:var(--bus-A);
 }
 
+.ScheduleTime{
+  display:inline-flex;
+  position:relative;
+  left: 86%;
+  padding: 20px;
+  gap:8px;
+  font-size:24px;
+  color: var(--scheduled-Time);
+}
 
 
 /* =========================

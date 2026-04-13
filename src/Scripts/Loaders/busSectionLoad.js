@@ -1,6 +1,6 @@
 async function loadBusSection() {
     try {
-    const res = await fetch("Components/FirstSectionBus.html");
+    const res = await fetch("Components/BusComponents/FirstSectionBus.html");
     if (!res.ok) throw new Error("HTTP " + res.status);
     const html = await res.text();
     document.getElementById("bus-section-placeholder").innerHTML = html;

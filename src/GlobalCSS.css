@@ -1,7 +1,9 @@
-/*Variables de couleurs utilisés dans le projet*/
+/* =========================
+   Variables de couleurs
+   ========================= */
 :root{
   --bg-dark: #030830; /* from Figma header */
-  --White: White;
+  --White: #ffffff;
   --panel: #0b1030;
   --text: #000000;
   --muted: #9aa3bf;
@@ -9,20 +11,29 @@
   --success: #16a34a;
   --warning: #f59e0b;
   --TextForTrainInfos: #030830;
+  --train-blue:#1d4ed8;
+  --bus-red:#e11d2e;
 }
 
-/* Global resets */
+
+
+
+/* =========================
+   Global resets
+   ========================= */
 *{ box-sizing:border-box; }
 html,body{ height:100%; }
 
 body{
   margin:0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Inter;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Inter, Arial, sans-serif;
   color:var(--text);
   background:linear-gradient(180deg,var(--White));
 }
 
-/* Header */
+/* =========================
+   Header
+   ========================= */
 .site-header{
   background:var(--bg-dark);
   padding:18px 24px;
@@ -31,7 +42,11 @@ body{
   justify-content:space-between;
 }
 
-.brand{ display:flex; align-items:center; gap: 18px; }
+.brand{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
 
 .logo{
   width:153px;
@@ -43,8 +58,8 @@ body{
 .site-title{
   font-size:32px;
   margin:0;
-  color: var(--White);
-  font-weight: bold;
+  color:var(--White);
+  font-weight:700;
 }
 
 .main-nav ul{
@@ -54,23 +69,33 @@ body{
   display:flex;
   gap:18px;
 }
-
 .main-nav a{ color:var(--muted); text-decoration:none; }
 .main-nav a:hover{ color:var(--text); }
 
-/* Première section ou on affiche des informations seulement*/
-.container{ max-width:100%; margin:24px auto; padding:0 16px; }
+/* =========================
+   Layout sections
+   ========================= */
+.container{
+  max-width:100%;
+  margin:24px auto;
+  padding:0 16px;
+}
 
 .consultation-section{
   background:rgba(255,255,255,0.03);
   padding:18px;
   border-radius:10px;
   margin-bottom:18px;
+  flex:1;
 }
 
 .consultation-section h2{ margin:0 0 12px 12px; }
 
-.consultation-form{ display:flex; flex-direction:column; gap:8px; }
+.consultation-form{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
 
 .top-row{
   display:flex;
@@ -79,8 +104,6 @@ body{
   gap:18px;
   margin-bottom:18px;
 }
-
-.consultation-section{ flex:1; }
 
 .infos-trains-section{
   display:flex;
@@ -99,232 +122,142 @@ body{
 .infos-trains-title{
   font-size:65px;
   margin:0;
-  color: var(--text);
-  font-weight: semi-bold;
+  color:var(--text);
+  font-weight:600;
 }
 
-.departures-section{ margin-top:12px; }
 
+
+
+
+
+
+/* =========================
+   TABLEAU (COMMUN)
+   ========================= */
 .departures-list table{
-  width:100%;
-  border-collapse:collapse;
-}
-
-/* header and body tables use fixed layout and full width; colgroups ensure alignment */
-.departures-head,
-.departures-body{
   width:100%;
   border-collapse:collapse;
   table-layout:fixed;
 }
 
-/* wrapper that draws a single 1px border around the body (header remains outside) */
 .tbody-wrapper{
-  border:1px solid var(--text);
-  border-radius: 20px;
+  border:1px solid #000;
+  border-radius:16px;
   overflow:hidden;
-  border-spacing: 0;
 }
 
-/* Header styling */
 .departures-list thead th{
-  text-align:left;
   padding:10px;
-  background:transparent;
-  color:var(--TextForTrainInfos);
-  font-size:40px;
-  font-weight:Heavy;
+  font-size:18px;
+  font-weight:700;
 }
 
-.departures-head thead th:nth-child(1){
-  text-align: center;
-}
-
-/* Colonne 2 : Quais (aligné à gauche – conforme Figma) */
-.departures-head thead th:nth-child(2){
-  text-align: center;
-}
-
-/* Colonne 3 : Durée (centré) */
-.departures-head thead th:nth-child(3){
-  text-align: center;
-}
-
-/* Colonne 4 : Heures Départ/Arrivé (aligné à gauche) */
-.departures-head thead th:nth-child(4){
-  text-align: center;
-}
-
-/* Colonne 5 : Retard (centré ou gauche selon Figma) */
-.departures-head thead th:nth-child(5){
-  text-align: left;
-}
-
-/* Box-style border around each table row */
 .departures-list tbody td{
-  padding:12px 10px;
-  color:var(--text);
-  vertical-align:middle; /* centre verticalement dans chaque ligne */
+  padding:12px;
+  vertical-align:middle;
 }
 
+.departures-list tbody tr:nth-child(even){
+  background:#f3f3f3;
+}
 
+/* =========================
+   COLONNE LIGNES (BUS + TRAIN)
+   ========================= */
 .departures-body tbody td:first-child{
-  text-align: center;      /* centrage horizontal dans la cellule */
-  vertical-align: middle;  /* centrage vertical dans la ligne */
-  white-space: nowrap;     /* évite le retour à la ligne badge + icône */
+  text-align:center;
+  white-space:nowrap;
 }
 
-/* badge + icône côte à côte et alignés verticalement */
-.departures-body tbody td:first-child > p,
-.departures-body tbody td:first-child > img{
-  display: inline-block;
-  vertical-align: middle;
-  margin: 0;
-  padding: 0;
+.line-cell{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
 }
 
-/* Ton badge est déjà en inline-flex (ok), on garde mais on ajoute juste l’espace */
-.departures-body tbody td:first-child > p{
-  margin-right: 0;
+/* Icônes ligne */
+.line-icon{
+  width:32px;
+  height:32px;
+  object-fit:contain;
 }
 
-/* IMPORTANT : surcharge le display:block global des images dans les td */
-.departures-body tbody td:first-child > img{
-  display: inline-block;   /* sinon l'image passe à la ligne (car rule globale: display:block) */
-  width: 50px;             /* si tu veux conserver la taille existante */
-  height: 50px;
-}
-
-
-
-
-.departures-list td:first-child > p:first-child{
+/* Badge ligne */
+.line-badge{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  box-sizing:border-box;
-  width:59px;
-  height:37px;
-  background:#FF0000;
-  border-radius:8px;
-  padding:8px 16px 4px;
-  margin:0;
-  color:#FFFFFF;
-  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  font-weight:600;
-  font-size:16px;
-  line-height:22px; /* 140% of 16px ≈ 22px */
+  min-width:36px;
+  height:28px;
+  padding:0 10px;
+  border-radius:6px;
+  font-size:14px;
+  font-weight:700;
+  color:#fff;
 }
 
+/* Variantes */
+.line-cell--bus .line-badge{
+  background:var(--bus-red);
+}
 
-
-
-
-
-
-.departures-list tbody tr:nth-child(even) td{ background:var(--White); }
-
-/* Fix coins arrondis : appliquer le radius aux cellules d'angle
- pour éviter que le fond des cellules carrées n'apparaisse */
-.departures-list tbody td{ background-clip: padding-box; }
-
-.TableauLignesTrain{ width: 50px; height: 50px; }
+.line-cell--train .line-badge{
+  background:var(--train-blue);
+}
 
 /* =========================
-   ✅ COLONNE "Durée" (3e)
-   Centrages horizontal + vertical sans flex sur <td>
+   FRÉQUENTATION (BUS)
    ========================= */
-.departures-body tbody td:nth-child(3){
-  text-align:center;     /* centrage horizontal */
-  vertical-align:middle; /* centrage vertical (cellule de tableau) */
-  white-space:nowrap;    /* évite le retour à la ligne icône + texte */
+.line-frequentation{
+  display:inline-flex;
+  gap:0;
 }
 
-/* icône + texte sur la même ligne et bien alignés */
-.departures-body tbody td:nth-child(3) img,
-.departures-body tbody td:nth-child(3) p{
-  display:inline-block;
-  vertical-align:middle;
-  margin:0;
-  padding:0;
-}
-
-/* Ajuste l'espace entre l'horloge et le texte */
-.departures-body tbody td:nth-child(3) img{
-  width:36px; /* conserve ton intention de taille */
-  height:auto;
+.line-frequentation img{
+  width:22px;
+  height:22px;
   object-fit:contain;
-  margin-right:6px; /* mets 0 si tu veux collé */
 }
 
-
-/* Colonne 2 : Quais */
+/* =========================
+   AUTRES COLONNES
+   ========================= */
 .departures-body tbody td:nth-child(2){
-  text-align: center;
-  padding-left: 10px;
-  padding-right: 10px;
+  text-align:center;
+  font-weight: bold;
 }
-
-/* Colonne 4 : Heures */
-.departures-body tbody td:nth-child(4){
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-/* Centre le bloc horaires sous le titre */
-.departures-body tbody td:nth-child(4) p{
-  width: fit-content;
-  margin: 0 auto;
-  text-align: left;
-}
-
-.departures-body tbody td:nth-child(5){
-  text-align: left;
-  padding-left: 10px;
-  padding-right: 50px;
-}
-
-
-
-/* Clock icon class: ensure it doesn't add extra spacing */
-.Horloge{
-  display:inline-block; /* au lieu de block pour rester inline avec le texte */
-  margin:0;
-}
-
-/* Ensure no default margins on images inside table cells */
-.departures-list tbody td img{
-  display:block;
-  margin:0;
-}
-
-.Quais{
-  color: var(--TextForTrainInfos);
-  font-size:30px;
+.departures-body tbody td:nth-child(3){
+  text-align:center;
+  vertical-align:center;
   font-weight: bold;
 }
 
-/*Affichage des status des trains : à l'heure, retardé, */
+.departures-body tbody td:nth-child(4),
+.departures-body tbody td:nth-child(5){
+  white-space:nowrap;
+  text-align:center;
+  vertical-align:center;
+}
+
+/* =========================
+   STATUS TRAIN
+   ========================= */
 .status{
-  display: flex;
-  text-align: inside;
-  padding: 16px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:8px 14px;
   border-radius:999px;
-  font-size:17px;
-  border-width: 271px;
-  height: 56px;
-  justify-content: center;
+  font-size:14px;
 }
 
-.status.ontime{ background:rgba(22,163,74,0.12); color:var(--success); }
-.status.delayed{ background:rgba(245,158,11,0.12); color:var(--warning); }
-
-
-
-
-@media(max-width:700px){
-  .form-row.compact{ flex-direction:column; }
-  .lines-section ul{ grid-template-columns:1fr; }
-  .main-nav ul{ gap:10px; }
+.status.ontime{
+  background:rgba(22,163,74,0.15);
+  color:var(--success);
 }
 
+.status.delayed{
+  background:rgba(245,158,11,0.15);
+  color:var(--warning);
+}

@@ -180,11 +180,12 @@ body{
   display: inline-block;
   vertical-align: middle;
   margin: 0;
+  padding: 0;
 }
 
 /* Ton badge est déjà en inline-flex (ok), on garde mais on ajoute juste l’espace */
 .departures-body tbody td:first-child > p{
-  margin-right: 10px; /* équivalent de ton gap:10px */
+  margin-right: 0;
 }
 
 /* IMPORTANT : surcharge le display:block global des images dans les td */
@@ -193,6 +194,8 @@ body{
   width: 50px;             /* si tu veux conserver la taille existante */
   height: 50px;
 }
+
+
 
 
 .departures-list td:first-child > p:first-child{
@@ -212,6 +215,12 @@ body{
   font-size:16px;
   line-height:22px; /* 140% of 16px ≈ 22px */
 }
+
+
+
+
+
+
 
 .departures-list tbody tr:nth-child(even) td{ background:var(--White); }
 

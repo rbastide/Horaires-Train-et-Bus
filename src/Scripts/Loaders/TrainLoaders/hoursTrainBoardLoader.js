@@ -7,5 +7,5 @@ async function loadHoursTrainBoard() {
   } catch (err) {
     console.error("Erreur chargement HoursTrainBoard.html :", err);
   }
-    
+
 }

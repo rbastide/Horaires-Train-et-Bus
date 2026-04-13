@@ -10,6 +10,9 @@
     <script src="Scripts/Loaders/TrainLoaders/trainSectionLoad.js"></script>
     <script src="Scripts/Loaders/BusLoaders/busSectionLoad.js"></script>
     <script src="Scripts/Loaders/sectionRotate.js"></script>
+    <script src="Scripts/Loaders/TrainLoaders/hoursTrainBoardLoader.js"></script>
+    <script src="Scripts/Loaders/BusLoaders/hoursBusBoardLoader.js"></script>
+
 
   </head>
   <body>
@@ -23,19 +26,37 @@
 
     <main class="container">
 
-      <!-- Première section ou on affiche des informations seulement -->
-
       <!-- Section Train chargée dynamiquement -->
-      <div id="train-section-placeholder"></div>
+      <div class="train-section">
+
+            <!-- Première section Train (titre et description) -->
+            <div id="train-section-placeholder"></div>
+
+            <!-- Deuxième section Train (horaires) -->
+            <div id="hours-train-board-placeholder"></div>
+
+        </div>
+
+
+
       <!-- Section Bus chargée dynamiquement -->
-      <div id="bus-section-placeholder"></div>
+      <div class="bus-section">
+
+            <!-- Première section Bus (titre et description) -->
+            <div id="bus-section-placeholder"></div>
+
+            <!-- Deuxième section Bus (horaires) -->
+            <div id="hours-bus-board-placeholder"></div>
+
+        </div>
 
 
 
-      <!-- Section des prochains départs -->
-      <div id="hours-train-board-placeholder"></div>
 
-     
+
+
+
+
     </main>
   </body>
 </html>

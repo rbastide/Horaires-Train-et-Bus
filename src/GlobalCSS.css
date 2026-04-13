@@ -9,10 +9,11 @@
   --muted: #9aa3bf;
   --accent: #00a7ff;
   --success: #16a34a;
-  --warning: #f59e0b;
   --TextForTrainInfos: #030830;
   --train-blue:#1d4ed8;
   --bus-red:#e11d2e;
+  --delayed-text : #EA2222;
+  --delayed-background: rgb(238,41,90);
 }
 
 
@@ -269,6 +270,7 @@ body{
 }
 
 .status.delayed{
-  background:rgba(245,158,11,0.15);
-  color:var(--warning);
+  background: rgb(238,41,90,0.15);
+  color:var(--delayed-text);
+  
 }

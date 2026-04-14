@@ -1,9 +1,15 @@
+/* =========================
+   CONFIG
+   ========================= */
+
 const API_BASE = "http://localhost:3000/api";
+
 const STOP_AREA_PERIGUEUX = "stop_area:SNCF:87595009";
 
 /* =========================
-   FETCH JSON
-========================= */
+   FETCH DATA
+   ========================= */
+
 async function fetchTrainBoardData(count = 10) {
   const url =
     `${API_BASE}/board` +
@@ -11,26 +17,29 @@ async function fetchTrainBoardData(count = 10) {
     `&count=${count}`;
 
   const response = await fetch(url);
+
   if (!response.ok) {
     throw new Error(`HTTP ${response.status}`);
   }
 
   return response.json();
-}
+};
 
 /* =========================
-   BUILD ROW
-========================= */
+   BUILD ONE ROW
+   ========================= */
+
 function buildTrainRow(row) {
   const tr = document.createElement("tr");
-  const isDelayed = row.delay_minutes > 0;
+
+  const isDelayed = Number(row.delay_minutes || 0) > 0;
 
   tr.innerHTML = `
     <td colspan="5">
       <div class="row-wrapper">
         <div class="row-grid">
 
-          <!-- Colonne 1 : Ligne -->
+          <!-- Colonne 1 -->
           <div class="cell">
             <div class="line-cell line-cell--train">
               <span class="line-badge ${row.line}">${row.line}</span>
@@ -38,74 +47,89 @@ function buildTrainRow(row) {
             </div>
           </div>
 
-          <!-- Colonne 2 : Quai -->
+          <!-- Colonne 2 -->
           <div class="Quais">
             ${row.platform}
           </div>
 
-          <!-- Colonne 3 : Durée -->
+          <!-- Colonne 3 -->
           <div class="Time">
-            <img src="Logo/Horloge.png" alt="Horloge" class="Horloge">
-            ${row.duration}
+            <img src="Logo/Horloge.png" alt="Logo - Horloge" class="Horloge">
+              ${row.duration}
           </div>
 
-          <!-- Colonne 4 : Départ / Arrivée -->
-          <div class="Depart">
-            ${
-              isDelayed
-                ? `
-                  <div class="DepartDelayed">
-                    <p><s><strong>${row.departure_base}</strong></s> ${row.origin}</p>
-                    <p class="delayedTime"><strong>${row.departure}</strong> ${row.origin}</p>
-                    <p><strong>${row.arrival}</strong> ${row.destination}</p>
-                  </div>
-                `
-                : `
-                  <p><strong>${row.departure}</strong> ${row.origin}</p>
-                  <p><strong>${row.arrival}</strong> ${row.destination}</p>
-                `
-            }
-          </div>
+          
+          <!-- Colonne 4 -->
+          ${
+            isDelayed
+            ? `
+            <div class="DepartDelayed">
+             <p>${row.departure_base} ${row.origin}</p>
 
-          <!-- Colonne 5 : Statut -->
-          <div>
-            <span class="status ${isDelayed ? "delayed" : "ontime"}">
-              ${row.status}
-            </span>
-          </div>
+            <p class="delayedTime"><strong>${row.departure}</strong> ${row.origin}</p>
 
+              <p>${row.arrival} ${row.destination}</p>
+
+              <p class="delayedTime"><strong>${row.arrival}</strong> ${row.destination} </p>
+            </div>
+            `
+            : `
+            <!-- Colonne 4 -->
+            <div class="Depart">
+              <p><strong>${row.departure}</strong> ${row.origin}</p>
+              <p><strong>${row.arrival}</strong> ${row.destination}</p>
+            </div>
+            `
+          }
+
+         <!-- Colonne 5 -->
+          <div class="Status">
+            <span class="status ${isDelayed ? "delayed" : "ontime"}">${row.status ?? (isDelayed ? "Retardé" : "À l'heure")}</span>
+          </div>
         </div>
       </div>
     </td>
+                       
   `;
 
   return tr;
-}
-``
+};
 
 /* =========================
-   RENDER
-========================= */
+   RENDER TABLE
+   ========================= */
+
 function renderTrainBoard(rows) {
-  const tbody = document.getElementById("train-board-body");
+  const tbody = document.getElementById("train-departures-body");
 
   if (!tbody) {
-    console.warn("train-board-body introuvable (HTML pas encore chargé)");
+    console.warn("train-departures-body introuvable → tableau non injecté ou mauvais timing");
     return;
   }
 
   tbody.innerHTML = "";
-  rows.forEach(row => tbody.appendChild(buildTrainRow(row)));
+
+  rows.forEach((row) => {
+    tbody.appendChild(buildTrainRow(row));
+  });
 }
 
 /* =========================
    API PUBLIQUE
-========================= */
+   ========================= */
+
 window.loadHoursTrainBoard = async function () {
   try {
     const data = await fetchTrainBoardData(10);
-    renderTrainBoard(data.rows);
-  } catch (e) {
-    console.error("Erreur chargement train", e);
+
+    const rows = Array.isArray(data) ? data : (data.rows || []);
+
+    if (!Array.isArray(rows)) {
+      throw new Error("Format de données inattendu : rows absent ou non tableau");
+    }
+
+    renderTrainBoard(rows);
+  } catch (error) {
+    console.error("Erreur chargement horaires train :", error);
   }
 };

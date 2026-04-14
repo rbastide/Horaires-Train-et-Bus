@@ -2,7 +2,7 @@ let currentSection = 'train';
 
 function rotateSection() {
   const trainSection = document.getElementById('train-section-placeholder');
-  const trainBoard = document.getElementById('train-board-body');
+  const trainBoard = document.getElementById('train-board-table-body');
   const busSection = document.getElementById('bus-section-placeholder');
   const busBoard = document.getElementById('hours-bus-board-placeholder');
 

@@ -1,6 +1,6 @@
 async function loadHoursTrainBoard() {
     try {
-    const res = await fetch("Components/TrainComponents/HoursTrainBoard.html");
+    const res = await fetch("FrontEnd/Components/TrainComponents/HoursTrainBoard.html");
     if (!res.ok) throw new Error("HTTP " + res.status);
     const html = await res.text();
     document.getElementById("hours-train-board-placeholder").innerHTML = html;

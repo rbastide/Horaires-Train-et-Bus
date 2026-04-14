@@ -1,6 +1,6 @@
 async function loadTrainSection() {
     try {
-    const res = await fetch("Components/TrainComponents/FirstSectionTrain.html");
+    const res = await fetch("FrontEnd/Components/TrainComponents/FirstSectionTrain.html");
     if (!res.ok) throw new Error("HTTP " + res.status);
     const html = await res.text();
     document.getElementById("train-section-placeholder").innerHTML = html;

@@ -1,6 +1,6 @@
 async function loadHeader() {
   try {
-    const res = await fetch("Components/Header.html");
+    const res = await fetch("FrontEnd/Components/Header.html");
     if (!res.ok) throw new Error("HTTP " + res.status);
     const html = await res.text();
     document.getElementById("header-placeholder").innerHTML = html;

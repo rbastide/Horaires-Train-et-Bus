@@ -148,50 +148,51 @@ body{
 /* =========================
    TABLEAU (COMMUN)
    ========================= */
+/* =========================
+   TABLEAU HORAIRES (NOUVEAU)
+   ========================= */
+
 .departures-list table{
   width:100%;
-  border-collapse:collapse;
+  border-collapse:separate;
+  border-spacing:0 12px; /* espace vertical entre lignes */
   table-layout:fixed;
 }
 
-.row-wrapper{
-  border:1px solid #000;
-  border-radius:16px;
-  padding:12px;
-  background:#fff;
-}
-
-.row-grid{
-  display:grid;
-  grid-template-columns: 18% 12% 18% 40% 12%;
-  align-items:center;
-}
-
-
-.departures-list thead th{
-  padding:10px;
-  font-size:36px;
-  font-weight:heavy;
-  color: var(--TextForTrainInfos);
-  align-items: center;
-}
-
+/* Lignes = cartes */
 .departures-list tbody tr{
-  position: relative;
+  background:#ffffff;
+  border-radius:16px;
+  overflow:hidden;
 }
 
-
-.departures-list tbody td{
-  padding:12px;
-}
-
+/* Effet alterné léger (optionnel) */
 .departures-list tbody tr:nth-child(even){
   background:#f3f3f3;
 }
 
+/* Cellules */
+.departures-list tbody td{
+  padding:16px 12px;
+  vertical-align:middle;
+}
+
 /* =========================
-   COLONNE LIGNES (BUS + TRAIN)
+   HEADERS
    ========================= */
+
+.departures-list thead th{
+  padding:10px;
+  font-size:36px;
+  font-weight:800; /* "heavy" n'existe pas en CSS */
+  color:var(--TextForTrainInfos);
+  text-align:center;
+}
+
+/* =========================
+   COLONNE LIGNES
+   ========================= */
+
 .departures-body tbody td:first-child{
   text-align:center;
   white-space:nowrap;
@@ -203,7 +204,7 @@ body{
   gap:8px;
 }
 
-/* Icônes ligne */
+/* Icône train */
 .line-icon{
   width:50px;
   height:50px;
@@ -216,7 +217,7 @@ body{
   align-items:center;
   justify-content:center;
   min-width:59px;
-  height: 37px;
+  height:37px;
   padding:0 10px;
   border-radius:6px;
   font-size:20px;
@@ -224,49 +225,62 @@ body{
   color:#fff;
 }
 
-/* Variantes */
-.line-badge.F32{
-  background:var(--train-F32);
+/* Variantes couleurs */
+.line-badge.F32{ background:var(--train-F32); }
+.line-badge.F31{ background:var(--train-F31); }
+.line-badge.D31{ background:var(--train-D31); }
+.line-badge.L31{ background:var(--train-L31); }
+
+.line-badge.C{ background:var(--bus-C); }
+.line-badge.N{ background:var(--bus-N); }
+.line-badge.E6{ background:var(--bus-E6); }
+.line-badge.B{ background:var(--bus-B); }
+.line-badge.A{ background:var(--bus-A); }
+
+/* =========================
+   QUAI / ARRET
+   ========================= */
+
+.Quais{
+  font-size:30px;
+  font-weight:700;
+  text-align:center;
 }
 
-.line-badge.F31{
-  background:var(--train-F31);
-}
+/* =========================
+   DUREE
+   ========================= */
 
-.line-badge.D31{
-  background:var(--train-D31);
-}
-
-.line-badge.L31{
-  background:var(--train-L31);
-}
-
-.line-badge.C{
-  background:var(--bus-C);
-}
-
-.line-badge.N{
-  background:var(--bus-N);
-}
-.line-badge.E6{
-  background:var(--bus-E6);
-}
-.line-badge.B{
-  background:var(--bus-B);
-}
-.line-badge.A{
-  background:var(--bus-A);
-}
-
-.ScheduleTime{
-  display:inline-flex;
-  position:relative;
-  left: 86%;
-  padding: 20px;
+.Time{
+  display:flex;
+  align-items:center;
+  justify-content:center;
   gap:8px;
-  font-size:24px;
-  color: var(--scheduled-Time);
+  font-size:28px;
+  font-weight:600;
 }
+
+/* =========================
+   DEPART / ARRIVEE
+   ========================= */
+
+.DepartDelayed p{
+  margin:2px 0;
+  font-size:18px;
+  line-height:1.2;
+}
+
+.DepartDelayed p.delayedTime{
+  color:var(--delayed);
+  font-size:22px;
+  font-weight:700;
+}
+
+.DepartDelayed p:not(.delayedTime):has(+ p.delayedTime){
+  text-decoration:line-through;
+  opacity:0.6;
+}
+
 
 
 /* =========================

@@ -2,7 +2,7 @@ let currentSection = 'train';
 
 function rotateSection() {
   const trainSection = document.getElementById('train-section-placeholder');
-  const trainBoard = document.getElementById('hours-train-board-placeholder');
+  const trainBoard = document.getElementById('train-board-body');
   const busSection = document.getElementById('bus-section-placeholder');
   const busBoard = document.getElementById('hours-bus-board-placeholder');
 
@@ -22,6 +22,8 @@ function rotateSection() {
     busBoard.style.display = 'none';
     currentSection = 'train';
     console.log('Affichage: Section Train');
+    
+    loadHoursTrainBoard();
   }
 }
 
@@ -30,6 +32,7 @@ async function initSections() {
   try {
     // Charger train d'abord
     await loadTrainSection();
+    await new Promise(requestAnimationFrame);
     await loadHoursTrainBoard();
     // Charger bus mais le cacher
     await loadBusSection();

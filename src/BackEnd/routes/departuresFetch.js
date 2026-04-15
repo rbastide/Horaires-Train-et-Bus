@@ -1,5 +1,7 @@
 import { Router } from "express";
 import { getDeparturesJson } from "../services/sncfApi.js";
+import dotenv from "dotenv";
+
 
 const router = Router();
 
@@ -12,7 +14,7 @@ router.get("/departures", async (req, res) => {
     if (!stop_area) return res.status(400).json({ error: "Missing stop_area" });
 
     const { status, body } = await getDeparturesJson({
-      token: process.env.SNCF_TOKEN,
+      token: process.env.API_SNCF_KEY,
       stopArea: stop_area,
       count,
       freshness: data_freshness

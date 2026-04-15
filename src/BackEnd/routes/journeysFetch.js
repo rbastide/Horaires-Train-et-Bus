@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { getJourneysJson } from "../services/sncfApi.js";
+import dotenv from "dotenv";
 
 const router = Router();
 
@@ -11,7 +12,7 @@ router.get("/journeys", async (req, res) => {
     }
 
     const { status, body } = await getJourneysJson({
-      token: process.env.SNCF_TOKEN,
+      token: process.env.API_SNCF_KEY,
       from,
       to,
       datetime

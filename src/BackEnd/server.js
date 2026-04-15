@@ -13,6 +13,6 @@ app.use("/api", departuresRouter);
 app.use("/api", journeysRouter);
 app.use("/api", boardRouter);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 app.listen(PORT, () => console.log(`✅ Proxy SNCF local: http://localhost:${PORT}`));

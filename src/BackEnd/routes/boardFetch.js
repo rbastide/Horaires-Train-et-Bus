@@ -1,10 +1,11 @@
 import { Router } from "express";
 import { getDeparturesJson, getJourneysJson } from "../services/sncfApi.js";
 import { delayMinutes, toHHMM, formatDuration, isTrain, getTerminusId, buildDisruptionMap, buildTerminusMap } from "../utils/helpers.js";
+import dotenv from "dotenv";
+
 
 const router = Router();
 const MAX_JOURNEYS_ENRICH = 6;
-
 
 
 // GET /api/board?stop_area=stop_area:SNCF:87595009&count=10

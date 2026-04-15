@@ -56,7 +56,7 @@ router.get("/board", async (req, res) => {
       const depRT = sdt.departure_date_time;
       const depBase = sdt.base_departure_date_time ?? depRT;
       const delay = delayMinutes(depRT, depBase);
-      const platform = sdt.platform ?? "Aucune Information";
+      const platform = sdt.platform ?? "--";
 
       const lineCode =
         d.route?.line?.code ||

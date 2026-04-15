@@ -1,29 +1,54 @@
 let currentSection = 'train';
+let rotationInterval = null;
+
+function getEl(id) {
+  const el = document.getElementById(id);
+  if (!el) {
+    console.warn(`[sectionRotate] Élément introuvable : #${id}`);
+  }
+  return el;
+}
+
+function setDisplay(el, value) {
+  if (el) {
+    el.style.display = value;
+  }
+}
 
 function rotateSection() {
-  const trainSection = document.getElementById('train-section-placeholder');
-  const trainBoard = document.getElementById('train-board-table-body');
-  const busSection = document.getElementById('bus-section-placeholder');
-  const busBoard = document.getElementById('hours-bus-board-placeholder');
+  const trainSection = getEl('train-section-placeholder');
+  const trainBoard = getEl('train-board-body');
+  const busSection = getEl('bus-section-placeholder');
+  const busBoard = getEl('hours-bus-board-placeholder');
+
+  if (!trainSection || !trainBoard || !busSection || !busBoard) {
+    console.warn('[sectionRotate] Rotation annulée : un ou plusieurs éléments sont absents du DOM.');
+    return;
+  }
 
   if (currentSection === 'train') {
     // Passer à Bus
-    trainSection.style.display = 'none';
-    trainBoard.style.display = 'none';
-    busSection.style.display = 'block';
-    busBoard.style.display = 'block';
+    setDisplay(trainSection, 'none');
+    setDisplay(trainBoard, 'none');
+    setDisplay(busSection, 'block');
+    setDisplay(busBoard, 'block');
+
     currentSection = 'bus';
     console.log('Affichage: Section Bus');
   } else {
     // Passer à Train
-    trainSection.style.display = 'block';
-    trainBoard.style.display = 'block';
-    busSection.style.display = 'none';
-    busBoard.style.display = 'none';
+    setDisplay(trainSection, 'block');
+    setDisplay(trainBoard, 'block');
+    setDisplay(busSection, 'none');
+    setDisplay(busBoard, 'none');
+
     currentSection = 'train';
     console.log('Affichage: Section Train');
-    
-    loadHoursTrainBoard();
+
+    // Recharge si la fonction existe
+    if (typeof loadHoursTrainBoard === 'function') {
+      loadHoursTrainBoard();
+    }
   }
 }
 
@@ -34,17 +59,26 @@ async function initSections() {
     await loadTrainSection();
     await new Promise(requestAnimationFrame);
     await loadHoursTrainBoard();
-    // Charger bus mais le cacher
+
+    // Charger bus ensuite
     await loadBusSection();
     await loadHoursBusBoard();
-    document.getElementById('bus-section-placeholder').style.display = 'none';
-    document.getElementById('hours-bus-board-placeholder').style.display = 'none';
+
+    const busSection = getEl('bus-section-placeholder');
+    const busBoard = getEl('hours-bus-board-placeholder');
+
+    setDisplay(busSection, 'none');
+    setDisplay(busBoard, 'none');
 
     console.log('Sections chargées - Rotation chaque 30 secondes');
-    // Alterner toutes les 30 secondes
-    setInterval(rotateSection, 30000);
+
+    if (rotationInterval) {
+      clearInterval(rotationInterval);
+    }
+
+    rotationInterval = setInterval(rotateSection, 30000);
   } catch (err) {
-    console.error("Erreur initialisation sections :", err);
+    console.error('Erreur initialisation sections :', err);
   }
 }
 

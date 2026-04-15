@@ -28,7 +28,12 @@ cd Horaires-Train-et-Bus
 
 ## 📦 Installation des dépendances
 
-Depuis la **racine du projet**, exécutez la commande suivante dans un terminal :
+Depuis le dossier **BackEnd** :
+```bash
+cd src/BackEnd/
+```
+
+, exécutez la commande suivante dans un terminal :
 ```bash
 npm install cors dotenv express
 ```

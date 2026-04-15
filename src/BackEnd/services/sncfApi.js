@@ -1,7 +1,8 @@
 import { basicAuthHeader } from "../utils/helpers.js";
+import "dotenv/config";
 
-const SNCF_BASE = "https://api.sncf.com/v1";
-const COVERAGE = "sncf";
+const SNCF_BASE = process.env.SNCF_URL;
+const COVERAGE = process.env.COVERAGE;
 
 export async function sncfFetchJson({ token, path, query = {}, timeoutMs = 8000 }) {
   const url = new URL(`${SNCF_BASE}${path}`);

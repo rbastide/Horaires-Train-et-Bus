@@ -15,9 +15,4 @@ app.use("/api", boardRouter);
 
 const PORT = process.env.PORT || 3000;
 
-console.log("Routes attendues :");
-console.log("GET  /api/departures");
-console.log("GET  /api/journeys");
-console.log("GET  /api/board");
-
 app.listen(PORT, () => console.log(`✅ Proxy SNCF local: http://localhost:${PORT}`));

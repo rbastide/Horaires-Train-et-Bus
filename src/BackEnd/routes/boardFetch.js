@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { getDeparturesJson, getJourneysJson } from "../services/sncfApi.js";
-import { delayMinutes, toHHMM, formatDuration, isTrain, getTerminusId } from "../Utils/helpers.js";
+import { delayMinutes, toHHMM, formatDuration, isTrain, getTerminusId } from "../utils/helpers.js";
 
 const router = Router();
 const MAX_JOURNEYS_ENRICH = 6;
@@ -76,18 +76,20 @@ router.get("/board", async (req, res) => {
         }
       }
 
-      rows.push({
-        line: lineCode,
-        platform,
-        duration,
-        departure: toHHMM(depRT),
-        departure_base: toHHMM(depBase),
-        arrival,
-        origin: "Périgueux",
-        destination,
-        delay_minutes: delay,
-        status: delay > 0 ? `Retard ${delay} min` : "À l'heure",
-      });
+      if (destination != "Périgueux") {
+          rows.push({
+            line: lineCode,
+            platform,
+            duration,
+            departure: toHHMM(depRT),
+            departure_base: toHHMM(depBase),
+            arrival,
+            origin: "Périgueux",
+            destination,
+            delay_minutes: delay,
+            status: delay > 0 ? `Retard ${delay} min` : "À l'heure",
+          });
+    }
     }
 
     return res.json({ stop_area, total: rows.length, rows });

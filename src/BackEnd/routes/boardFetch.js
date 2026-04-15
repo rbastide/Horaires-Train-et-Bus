@@ -1,9 +1,11 @@
 import { Router } from "express";
 import { getDeparturesJson, getJourneysJson } from "../services/sncfApi.js";
-import { delayMinutes, toHHMM, formatDuration, isTrain, getTerminusId } from "../utils/helpers.js";
+import { delayMinutes, toHHMM, formatDuration, isTrain, getTerminusId, buildDisruptionMap, buildTerminusMap } from "../utils/helpers.js";
 
 const router = Router();
 const MAX_JOURNEYS_ENRICH = 6;
+
+
 
 // GET /api/board?stop_area=stop_area:SNCF:87595009&count=10
 router.get("/board", async (req, res) => {
@@ -12,7 +14,9 @@ router.get("/board", async (req, res) => {
     const stop_area = req.query.stop_area;
     const count = Number(req.query.count ?? 10);
 
-    if (!stop_area) return res.status(400).json({ error: "Missing stop_area" });
+    if (!stop_area) {
+      return res.status(400).json({ error: "Missing stop_area" });
+    }
 
     const dep = await getDeparturesJson({
       token,
@@ -30,10 +34,21 @@ router.get("/board", async (req, res) => {
       });
     }
 
-    const departures = dep.json?.departures ?? [];
-    const trainsOnly = departures.filter(isTrain);
+    const apiJson = dep.json ?? {};
+    const departures = apiJson.departures ?? [];
+    const terminusMap = buildTerminusMap(apiJson);
+    const disruptionMap = buildDisruptionMap(apiJson);
+
+    const trainsOnly = departures.filter((d) => {
+      const isTrainDeparture = isTrain(d);
+      const isPerigueux =
+        d?.stop_point?.stop_area?.id === stop_area ||
+        d?.stop_point?.stop_area?.name === "Périgueux";
+      return isTrainDeparture && isPerigueux;
+    });
 
     const rows = [];
+
     for (let i = 0; i < trainsOnly.length; i++) {
       const d = trainsOnly[i];
       const sdt = d.stop_date_time ?? {};
@@ -41,7 +56,6 @@ router.get("/board", async (req, res) => {
       const depRT = sdt.departure_date_time;
       const depBase = sdt.base_departure_date_time ?? depRT;
       const delay = delayMinutes(depRT, depBase);
-
       const platform = sdt.platform ?? "Aucune Information";
 
       const lineCode =
@@ -50,16 +64,20 @@ router.get("/board", async (req, res) => {
         d.display_informations?.label ||
         "--";
 
+      const tripShortName = d.display_informations?.trip_short_name;
       const terminusId = getTerminusId(d);
-      const destination =
+
+      let destination =
+        terminusMap.get(terminusId) ||
+        disruptionMap.get(tripShortName)?.terminusName ||
+        d.display_informations?.direction?.split(" (")[0] ||
         d.route?.direction?.stop_area?.name ||
-        (d.display_informations?.direction?.split(" (")[0]) ||
         "--";
 
       let duration = "--";
-      let arrival = "--:--";
+      let arrival = disruptionMap.get(tripShortName)?.arrivalTime ?? "--:--";
 
-      if (i < MAX_JOURNEYS_ENRICH && terminusId && depRT) {
+      if (arrival === "--:--" && i < MAX_JOURNEYS_ENRICH && terminusId && depRT) {
         const j = await getJourneysJson({
           token,
           from: stop_area,
@@ -68,31 +86,40 @@ router.get("/board", async (req, res) => {
         });
 
         if (j.ok) {
-          const j0 = (j.json?.journeys ?? [])[0];
-          if (j0) {
-            duration = formatDuration(j0.duration);
-            if (j0.arrival_date_time) arrival = toHHMM(j0.arrival_date_time);
+          const journeys = j.json?.journeys ?? [];
+
+          const matchedJourney =
+            journeys.find((x) => x?.departure_date_time === depRT) ||
+            journeys[0];
+
+          if (matchedJourney) {
+            duration = formatDuration(matchedJourney.duration);
+            if (matchedJourney.arrival_date_time) {
+              arrival = toHHMM(matchedJourney.arrival_date_time);
+            }
           }
         }
       }
 
-      if (destination != "Périgueux") {
-          rows.push({
-            line: lineCode,
-            platform,
-            duration,
-            departure: toHHMM(depRT),
-            departure_base: toHHMM(depBase),
-            arrival,
-            origin: "Périgueux",
-            destination,
-            delay_minutes: delay,
-            status: delay > 0 ? `Retard ${delay} min` : "À l'heure",
-          });
-    }
+      rows.push({
+        line: lineCode,
+        platform,
+        duration,
+        departure: toHHMM(depRT),
+        departure_base: toHHMM(depBase),
+        arrival,
+        origin: "Périgueux",
+        destination,
+        delay_minutes: delay,
+        status: delay > 0 ? `Retard ${delay} min` : "À l'heure",
+      });
     }
 
-    return res.json({ stop_area, total: rows.length, rows });
+    return res.json({
+      stop_area,
+      total: rows.length,
+      rows,
+    });
   } catch (e) {
     return res.status(500).json({ error: String(e) });
   }

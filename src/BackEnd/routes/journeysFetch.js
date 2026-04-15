@@ -16,7 +16,7 @@ router.get("/journeys", async (req, res) => {
       to,
       datetime
     });
-
+    console.log(body)
     res.status(status).type("application/json").send(body);
   } catch (e) {
     res.status(500).json({ error: String(e) });

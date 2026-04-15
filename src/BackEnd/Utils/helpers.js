@@ -41,3 +41,38 @@ export function getTerminusId(dep) {
   const term = links.find(l => l.category === "terminus" && l.id);
   return term?.id || null;
 }
+
+function hhmmFromCompact(time) {
+  if (!time || typeof time !== "string" || time.length < 4) return "--:--";
+  return `${time.slice(0, 2)}:${time.slice(2, 4)}`;
+}
+
+export function buildTerminusMap(apiJson) {
+  const map = new Map();
+  for (const t of apiJson?.terminus ?? []) {
+    if (t?.id) map.set(t.id, t.name ?? t.label ?? "--");
+  }
+  return map;
+}
+
+export function buildDisruptionMap(apiJson) {
+  const map = new Map();
+
+  for (const disruption of apiJson?.disruptions ?? []) {
+    for (const impacted of disruption?.impacted_objects ?? []) {
+      const tripName = impacted?.pt_object?.trip?.name;
+      const stops = impacted?.impacted_stops ?? [];
+      if (!tripName || stops.length === 0) continue;
+
+      const lastStop = stops[stops.length - 1];
+      map.set(tripName, {
+        terminusName: lastStop?.stop_point?.name ?? "--",
+        arrivalTime:
+          hhmmFromCompact(lastStop?.amended_arrival_time) ||
+          hhmmFromCompact(lastStop?.base_arrival_time),
+      });
+    }
+  }
+
+  return map;
+}

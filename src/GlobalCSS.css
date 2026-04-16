@@ -95,34 +95,28 @@ body{
   padding:0 16px;
 }
 
+.top-row{
+  display:flex;
+}
+
 .consultation-section{
   background:rgba(255,255,255,0.03);
   padding:18px;
   border-radius:10px;
-  margin-bottom:18px;
   flex:1;
 }
 
 .consultation-section h2{ 
   margin:0 0 12px 12px; 
-  font-size:28px;
   color:var(--text);
   font-weight: medium;
 }
 
 .consultation-section p{ 
   margin:0 0 12px 12px; 
-  font-size:22px;
+  font-size:18px;
   color:var(--text);
   font-weight:lighter ;
-}
-
-.top-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:18px;
-  margin-bottom:18px;
 }
 
 .infos-section{
@@ -133,15 +127,16 @@ body{
 }
 
 .infos-logo{
-  width:171px;
-  height:171px;
+  margin:0; 
+  width:100px;
+  height:100px;
   background:transparent;
   border-radius:6px;
-
 }
 
 .infos-title{
-  font-size:65px;
+  margin:0; 
+  font-size:40px;
   color:var(--TextForTrainInfos);
   font-weight:semi-bold;
   padding-right: 200px;
@@ -165,19 +160,20 @@ body{
 
 .row-grid{
   display:grid;
-  grid-template-columns: 21% 21% 43% 21%;
+  grid-template-columns: 21% 21% 40% 18%;
   align-items:center;
+  justify-content: center;
 }
 
 .row-grid-bus{
   display:grid;
-  grid-template-columns: 18%  12% 18% 40% 12%;
+  grid-template-columns: 18% 12% 18% 40% 12%;
   align-items:center;
 }
 
 
 .departures-list thead th{
-  padding:10px;
+  padding:0;
   font-size:36px;
   font-weight:heavy;
   color: var(--TextForTrainInfos);
@@ -198,7 +194,7 @@ body{
 /* =========================
    COLONNE LIGNES (BUS + TRAIN)
    ========================= */
-.departures-body tbody td:first-child{
+.departures-body tbody td{
   text-align:center;
   white-space:nowrap;
 }
@@ -259,20 +255,6 @@ body{
 
 
 /* =========================
-   FRÉQUENTATION (BUS)
-   ========================= */
-.line-frequentation{
-  display:inline-flex;
-  gap:0;
-}
-
-.line-frequentation img{
-  width:58px;
-  height:58px;
-  object-fit:contain;
-}
-
-/* =========================
    AUTRES COLONNES
    ========================= */
 .Quais, .Time{
@@ -283,10 +265,13 @@ body{
   gap:8px;
 }
 
+.Depart{
+  font-size: 20px;
+}
 .DepartDelayed p{
   align-items:center;
   justify-content:center;
-  font-size: 16px;
+  font-size: 24px;
   font-weight: regular;
   gap:8px;
   line-height: 0.2;
@@ -302,13 +287,6 @@ body{
   text-decoration: line-through;
 }
 
-.departures-body tbody td:nth-child(5){
-  white-space:nowrap;
-  text-align:center;
-  vertical-align:center;
-  font-size: 30px;
-}
-
 
 .Arrets, .Destinations{
   display:inline-flex;
@@ -319,9 +297,6 @@ body{
 }
 
 .DepartTime{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
   font-size: 30px;
   font-weight: medium;
 }
@@ -342,12 +317,12 @@ body{
    ========================= */
 .status{
   display:inline-flex;
-  align-items:left;
+  align-items:center;
   justify-content:center;
-  padding:8px 14px;
+  padding:8px 104px;
   border-radius:999px;
   font-size:17px;
-  width: 21%;
+  width: 50%;
 }
 
 .status.ontime{

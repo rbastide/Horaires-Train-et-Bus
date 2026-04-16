@@ -35,7 +35,7 @@ function buildTrainRow(row) {
   const isDelayed = Number(row.delay_minutes || 0) > 0;
 
   tr.innerHTML = `
-    <td colspan="5">
+    <td colspan="4">
       <div class="row-wrapper">
         <div class="row-grid">
 

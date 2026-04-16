@@ -18,7 +18,7 @@ REM ===== FRONTEND =====
 start "Frontend" cmd /k "cd /d "%HOURS%" && npx live-server --port=%FRONT_PORT% --open="%FRONT_FILE%"
 
 REM Petite pause pour laisser le back démarrer
-timeout /t 3 /nobreak >nul
+timeout /t 10 /nobreak >nul
 
 REM ===== ENVOI DE F11 POUR PASSER EN PLEIN ÉCRAN =====
 powershell -Command "$wshell = New-Object -ComObject WScript.Shell; Start-Sleep -Milliseconds 500; $wshell.AppActivate('Hours'); Start-Sleep -Milliseconds 500; $wshell.SendKeys('{F11}')"

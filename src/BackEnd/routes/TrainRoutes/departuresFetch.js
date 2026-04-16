@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getDeparturesJson } from "../services/sncfApi.js";
+import { getDeparturesJson } from "../../services/sncfApi.js";
 import dotenv from "dotenv";
 
 

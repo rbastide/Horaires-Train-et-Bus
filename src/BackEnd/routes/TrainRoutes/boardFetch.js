@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { getDeparturesJson, getJourneysJson } from "../services/sncfApi.js";
-import { delayMinutes, toHHMM, formatDuration, isTrain, getTerminusId, buildDisruptionMap, buildTerminusMap } from "../utils/helpers.js";
+import { getDeparturesJson, getJourneysJson } from "../../services/sncfApi.js";
+import { delayMinutes, toHHMM, formatDuration, isTrain, getTerminusId, buildDisruptionMap, buildTerminusMap } from "../../utils/helpers.js";
 import dotenv from "dotenv";
 
 

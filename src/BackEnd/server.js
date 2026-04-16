@@ -2,9 +2,9 @@ import express from "express";
 import cors from "cors";
 import "dotenv/config";
 
-import departuresRouter from "./routes/departuresFetch.js";
-import journeysRouter from "./routes/journeysFetch.js";
-import boardRouter from "./routes/boardFetch.js";
+import departuresRouter from "./routes/TrainRoutes/departuresFetch.js";
+import journeysRouter from "./routes/TrainRoutes/journeysFetch.js";
+import boardRouter from "./routes/TrainRoutes/boardFetch.js";
 
 const app = express();
 app.use(cors({ origin: true }));

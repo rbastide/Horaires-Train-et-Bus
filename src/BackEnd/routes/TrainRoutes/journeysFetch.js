@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getJourneysJson } from "../services/sncfApi.js";
+import { getJourneysJson } from "../../services/sncfApi.js";
 import dotenv from "dotenv";
 
 const router = Router();

@@ -48,18 +48,13 @@ function buildTrainRow(row) {
           </div>
 
           <!-- Colonne 2 -->
-          <div class="Quais">
-            ${row.platform}
-          </div>
-
-          <!-- Colonne 3 -->
           <div class="Time">
             <img src="Logo/Horloge.png" alt="Logo - Horloge" class="Horloge">
               ${row.duration}
           </div>
 
           
-          <!-- Colonne 4 -->
+          <!-- Colonne 3 -->
           ${
             isDelayed
             ? `
@@ -74,7 +69,7 @@ function buildTrainRow(row) {
             </div>
             `
             : `
-            <!-- Colonne 4 -->
+            <!-- Colonne 3 -->
             <div class="Depart">
               <p><strong>${row.departure}</strong> ${row.origin}</p>
               <p><strong>${row.arrival}</strong> ${row.destination}</p>
@@ -82,7 +77,7 @@ function buildTrainRow(row) {
             `
           }
 
-         <!-- Colonne 5 -->
+         <!-- Colonne 4 -->
           <div class="Status">
             <span class="status ${isDelayed ? "delayed" : "ontime"}">${row.status ?? (isDelayed ? "Retardé" : "À l'heure")}</span>
           </div>

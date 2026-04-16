@@ -165,7 +165,13 @@ body{
 
 .row-grid{
   display:grid;
-  grid-template-columns: 18% 12% 18% 40% 12%;
+  grid-template-columns: 21% 21% 43% 21%;
+  align-items:center;
+}
+
+.row-grid-bus{
+  display:grid;
+  grid-template-columns: 18%  12% 18% 40% 12%;
   align-items:center;
 }
 
@@ -336,12 +342,12 @@ body{
    ========================= */
 .status{
   display:inline-flex;
-  align-items:center;
+  align-items:left;
   justify-content:center;
   padding:8px 14px;
   border-radius:999px;
   font-size:17px;
-  width: 80%;
+  width: 21%;
 }
 
 .status.ontime{

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Horaires - Train et Bus</title>
-    <!-- Base HTML generated from Figma design (CSS linked below) -->
+    <!-- Liaison des script/CSS -->
     <link rel="stylesheet" href="GlobalCSS.css">
     <script src="FrontEnd/Scripts/Loaders/ComponentsLoader/headerLoad.js"></script>
     <script src="FrontEnd/Scripts/Loaders/TrainLoaders/trainSectionLoad.js"></script>
@@ -12,12 +12,14 @@
     <script src="FrontEnd/Scripts/sectionRotate.js"></script>
     <script src="FrontEnd/Scripts/Loaders/TrainLoaders/hoursTrainBoardLoader.js"></script>
     <script src="FrontEnd/Scripts/Loaders/BusLoaders/hoursBusBoardLoader.js"></script>
+    <script src="FrontEnd/Scripts/Loaders/BusLoaders/busFooterLoad.js"></script>
 
   </head>
   <body>
+    <!-- Header -->
     <header id="header-placeholder"></header>
 
-
+    <!-- Main -->
     <main class="container">
 
       <!-- Section Train chargée dynamiquement -->
@@ -29,7 +31,7 @@
             <!-- Deuxième section Train (horaires) -->
             <div id="train-board-body"></div>
 
-        </div>
+      </div>
 
       <!-- Section Bus chargée dynamiquement -->
       <div class="bus-section">
@@ -40,7 +42,11 @@
             <!-- Deuxième section Bus (horaires) -->
             <div id="hours-bus-board-placeholder"></div>
 
-        </div>
+            <!-- Troisième section Bus (footer) -->
+            <div id="footer-bus-placeholder"></div>
+
+      </div>
+      
 
     </main>
 

@@ -25,209 +25,6 @@
   --scheduled-Time: #5DC810;
 }
 
-
-
-
-/* =========================
-   Global resets
-   ========================= */
-*{ box-sizing:border-box; }
-html,body{ height:100%; }
-
-/* =========================
-   Body & Background
-   ========================= */
-body{
-  margin:0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Inter, Arial, sans-serif;
-  color:var(--text);
-  background:linear-gradient(180deg,var(--White));
-}
-
-/* =========================
-   Header
-   ========================= */
-.site-header{
-  background:var(--bg-dark);
-  padding:18px 24px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:18px;
-}
-
-.logo{
-  width:153px;
-  height:92px;
-  background:transparent;
-  border-radius:6px;
-}
-
-.site-title{
-  font-size:32px;
-  margin:0;
-  color:var(--White);
-  font-weight:700;
-}
-
-.main-nav ul{
-  list-style:none;
-  margin:0;
-  padding:0;
-  display:flex;
-  gap:18px;
-}
-
-.main-nav a{ color:var(--muted); text-decoration:none; }
-.main-nav a:hover{ color:var(--text); }
-
-/* =========================
-   Layout sections
-   ========================= */
-.container{
-  max-width:100%;
-  margin:24px auto;
-  padding:0 16px;
-}
-
-.top-row{
-  display:flex;
-}
-
-.consultation-section{
-  background:rgba(255,255,255,0.03);
-  padding:18px;
-  border-radius:10px;
-  flex:1;
-}
-
-.consultation-section h2{ 
-  margin:0 0 12px 12px; 
-  color:var(--text);
-  font-weight: medium;
-}
-
-.consultation-section p{ 
-  margin:0 0 12px 12px; 
-  font-size:18px;
-  color:var(--text);
-  font-weight:lighter ;
-}
-
-.infos-section{
-  display:flex;
-  align-items:center;
-  gap:6px;
-  justify-content:flex-end;
-}
-
-.infos-logo{
-  margin:0; 
-  width:100px;
-  height:100px;
-  background:transparent;
-  border-radius:6px;
-}
-
-.infos-title{
-  margin:0; 
-  font-size:40px;
-  color:var(--TextForTrainInfos);
-  font-weight:semi-bold;
-  padding-right: 200px;
-}
-
-/* =========================
-   TABLEAU (COMMUN)
-   ========================= */
-.departures-list table{
-  width:100%;
-  border-collapse:collapse;
-  table-layout:fixed;
-}
-
-.row-wrapper{
-  border:1px solid #000;
-  border-radius:16px;
-  padding:12px;
-  background:#f3f3f3;
-}
-
-.row-grid{
-  display:grid;
-  grid-template-columns: 21% 21% 40% 18%;
-  align-items:center;
-  justify-content: center;
-}
-
-.row-grid-bus{
-  display:grid;
-  grid-template-columns: 18% 14% 26% 18% 24%;
-  align-items:center;
-}
-
-
-.departures-list thead th{
-  padding:0;
-  font-size:36px;
-  font-weight:heavy;
-  color: var(--TextForTrainInfos);
-  align-items: center;
-}
-
-.departures-list tbody tr{
-  position: relative;
-}
-
-
-.departures-list tbody td{
-  padding:12px;
-}
-
-
-
-/* =========================
-   COLONNE LIGNES (BUS + TRAIN)
-   ========================= */
-.departures-body tbody td{
-  text-align:center;
-  white-space:nowrap;
-}
-
-.line-cell{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-}
-
-/* Icônes ligne */
-.line-icon{
-  width:50px;
-  height:50px;
-  object-fit:contain;
-}
-
-/* Badge ligne */
-.line-badge{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-width:59px;
-  height: 37px;
-  padding:0 10px;
-  border-radius:6px;
-  font-size:20px;
-  font-weight:700;
-  color:#fff;
-}
-
-/* Variantes */
-
 /* Couleur badge train */
 .line-badge.F32{ background:var(--train-F32) }
 .line-badge.F31{ background:var(--train-F31) }
@@ -243,6 +40,279 @@ body{
 .line-badge.B{ background:var(--bus-B) }
 .line-badge.A{ background:var(--bus-A) }
 
+
+
+
+
+
+
+
+/* =========================
+   Global resets
+   ========================= */
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+
+
+
+
+
+
+
+/* =========================
+   Body & Background
+   ========================= */
+body{
+  margin:0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Inter, Arial, sans-serif;
+  color:var(--text);
+  background:linear-gradient(180deg,var(--White));
+}
+
+
+
+
+
+
+/* =========================
+   Header
+   ========================= */
+.site-header{
+  background:var(--bg-dark);
+  padding:18px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+/* Emplacement Titre header */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+/* Titre header */
+.site-title{
+  font-size:32px;
+  margin:0;
+  color:var(--White);
+  font-weight:700;
+}
+
+/* Images logo */
+.logo{
+  width:153px;
+  height:92px;
+  background:transparent;
+  border-radius:6px;
+}
+
+/* Liste à puces non-ordonnée pour les logos*/
+.main-nav ul{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  gap:18px;
+}
+
+
+
+
+
+
+
+
+/* =========================
+   Layout sections
+   ========================= */
+
+/* Main Container */
+.container{
+  max-width:100%;
+  margin:24px auto;
+  padding:0 16px;
+}
+
+/* Première section */
+.top-row{
+  display:flex;
+}
+
+/* Section consultation de la première section */
+.consultation-section{
+  background:rgba(255,255,255,0.03);
+  padding:18px;
+  border-radius:10px;
+  flex:1;
+}
+
+/* Titre de la consultation de la première section */
+.consultation-section h2{ 
+  margin:0 0 12px 12px; 
+  color:var(--text);
+  font-weight: medium;
+}
+
+/* Paragraphe de la consultation de la première section*/
+.consultation-section p{ 
+  margin:0 0 12px 12px; 
+  font-size:18px;
+  color:var(--text);
+  font-weight:lighter ;
+}
+
+/* Section infos de la consultation de la première section */
+.infos-section{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  justify-content:flex-end;
+}
+
+/* Logos de la section infos */
+.infos-logo{
+  margin:0; 
+  width:100px;
+  height:100px;
+  background:transparent;
+  border-radius:6px;
+}
+
+/* Titre de la section infos*/
+.infos-title{
+  margin:0; 
+  font-size:40px;
+  color:var(--TextForTrainInfos);
+  font-weight:semi-bold;
+  padding-right: 200px;
+}
+
+
+
+
+
+
+
+
+/* =========================
+   TABLEAU (COMMUN)
+   ========================= */
+
+/* Tableau de la section Table*/
+.departures-list table{
+  width:100%;
+  border-collapse:collapse;
+  table-layout:fixed;
+}
+
+
+/* Encadrement du tableau */
+.row-wrapper{
+  border:1px solid #000;
+  border-radius:16px;
+  padding:12px;
+  background:#f3f3f3;
+}
+
+/* Encadrement de chaque ligne du tableau (train) */
+.row-grid-train{
+  display:grid;
+  grid-template-columns: 21% 21% 40% 18%;
+  align-items:center;
+  justify-content: center;
+}
+/* Encadrement de chaque ligne du tableau (bus) */
+.row-grid-bus{
+  display:grid;
+  grid-template-columns: 18% 14% 26% 18% 24%;
+  align-items:center;
+}
+
+/* Titre de chaque colonne du tableau */
+.departures-list thead th{
+  padding:0;
+  font-size:36px;
+  font-weight:heavy;
+  color: var(--TextForTrainInfos);
+  align-items: center;
+}
+
+
+/* Tableau de chaque lignes */
+.departures-list tbody td{
+  padding:8px;
+}
+
+/* Items de chaque ligne du tableau */
+.departures-body tbody td{
+  text-align:center;
+  white-space:nowrap;
+}
+
+/* -------------------------
+   COLONNES/LIGNES (BUS + TRAIN)
+   ------------------------- */
+
+
+/* Items de la colonne Lignes */
+.line-cell{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+
+/* Icônes de la colonne Lignes */
+.line-icon{
+  width:50px;
+  height:50px;
+  object-fit:contain;
+}
+
+/* Badge de la colonne Lignes */
+.line-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:59px;
+  height: 37px;
+  padding:0 10px;
+  border-radius:6px;
+  font-size:20px;
+  font-weight:700;
+  color:#fff;
+}
+
+/* -------------------------
+   COLONNE/LIGNES (BUS)
+   ------------------------- */
+
+/* Colonne Arrêts et destinations de la section Bus */
+.Arrets, .Destinations{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size: 30px;
+  font-weight: bold;
+}
+/* Colonne Heures départ de la section Bus */
+.DepartTime{
+  font-size: 30px;
+  font-weight: medium;
+}
+
+/* Colonne Attente de la section Bus */
+.Attente{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size: 30px;
+  font-weight: medium;
+  gap:8px;
+}
+
+/* Heure théorique du footer de la section Bus */
 .ScheduleTime{
   display:inline-flex;
   position:relative;
@@ -253,11 +323,12 @@ body{
   color: var(--scheduled-Time);
 }
 
+/* -------------------------
+   COLONNE/LIGNES (TRAIN)
+   ------------------------- */
 
-/* =========================
-   AUTRES COLONNES
-   ========================= */
-.Quais, .Time{
+/* Colone Durée de la section Train  */
+.Time{
   align-items:center;
   justify-content:center;
   font-size: 30px;
@@ -265,9 +336,11 @@ body{
   gap:8px;
 }
 
+/* Colonne Heure départ/arrivé de la section train*/
 .Depart{
   font-size: 20px;
 }
+/* Parapgraphe de la colonne Heure départ/arrivé de la section train*/
 .DepartDelayed p{
   align-items:center;
   justify-content:center;
@@ -277,6 +350,7 @@ body{
   line-height: 0.2;
 }
 
+/* Parapgraphe de la colonne Heure départ/arrivé de la section train (si en retard)*/
 .DepartDelayed p.delayedTime{
   color: var(--delayed);
   font-size: 30px;
@@ -288,33 +362,10 @@ body{
 }
 
 
-.Arrets, .Destinations{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  font-size: 30px;
-  font-weight: bold;
-}
-
-.DepartTime{
-  font-size: 30px;
-  font-weight: medium;
-}
-
-.Attente{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  font-size: 30px;
-  font-weight: medium;
-  gap:8px;
-}
-
-
-
 /* =========================
    STATUS TRAIN
    ========================= */
+/* Statut général du train */
 .status{
   display:inline-flex;
   align-items:center;
@@ -325,6 +376,7 @@ body{
   width: 50%;
 }
 
+/* Status du train à l'heure */
 .status.ontime{
   background:rgba(22,163,74,0.15);
   color:var(--success);
@@ -332,6 +384,7 @@ body{
 
 }
 
+/* Status du train en retard */
 .status.delayed{
   background: rgb(238,41,90,0.15);
   color:var(--delayed-text);

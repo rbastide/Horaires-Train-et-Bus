@@ -37,7 +37,7 @@ function buildTrainRow(row) {
   tr.innerHTML = `
     <td colspan="4">
       <div class="row-wrapper">
-        <div class="row-grid">
+        <div class="row-grid-train">
 
           <!-- Colonne 1 -->
           <div class="cell">

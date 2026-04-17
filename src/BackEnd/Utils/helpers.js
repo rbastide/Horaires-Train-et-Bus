@@ -1,13 +1,16 @@
+// Fonction de connexion a l'api
 export function basicAuthHeader(token) {
   const b64 = Buffer.from(`${token}:`).toString("base64");
   return `Basic ${b64}`;
 }
 
+// Fonction de conversion des heures en format HHMM
 export function toHHMM(dt) {
   if (!dt) return "--:--";
   return dt.slice(9, 11) + ":" + dt.slice(11, 13);
 }
 
+// Fonction de conversion de la date donnée par Navitia en format YYYY MM DD HH mm SS
 export function parseNavitiaDate(dt) {
   const y = +dt.slice(0, 4);
   const mo = +dt.slice(4, 6) - 1;
@@ -18,12 +21,16 @@ export function parseNavitiaDate(dt) {
   return new Date(Date.UTC(y, mo, d, hh, mm, ss));
 }
 
+
+// Fonction de calcule des minutes de retard
 export function delayMinutes(realtimeDT, baseDT) {
   if (!realtimeDT || !baseDT) return 0;
   const diff = (parseNavitiaDate(realtimeDT) - parseNavitiaDate(baseDT)) / 60000;
   return Math.max(0, Math.round(diff));
 }
 
+
+// Fonction 
 export function formatDuration(seconds) {
   if (typeof seconds !== "number") return "--";
   const min = Math.round(seconds / 60);
@@ -32,21 +39,25 @@ export function formatDuration(seconds) {
   return h > 0 ? `${h}h${String(m).padStart(2, "0")}` : `${m} min`;
 }
 
+// Test si le mode de transport est bien un train
 export function isTrain(dep) {
   return (dep.stop_point?.id || "").endsWith(":Train");
 }
 
+// Fonction récupérant l'id tu terminus
 export function getTerminusId(dep) {
   const links = dep.stop_date_time?.links ?? [];
   const term = links.find(l => l.category === "terminus" && l.id);
   return term?.id || null;
 }
 
+// Fonction de conversion des heures compact en format hhmm
 function hhmmFromCompact(time) {
   if (!time || typeof time !== "string" || time.length < 4) return "--:--";
   return `${time.slice(0, 2)}:${time.slice(2, 4)}`;
 }
 
+// Fonction calculant le trajet
 export function buildTerminusMap(apiJson) {
   const map = new Map();
   for (const t of apiJson?.terminus ?? []) {

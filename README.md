@@ -60,7 +60,8 @@ Dans le fichier **.env**, vous devrez :
 
 👉 Exemple de fichier .env (à adapter selon vos besoins) :
 
-<img width="459" height="128" alt="image" src="https://github.com/user-attachments/assets/047257be-46b5-468b-8ca8-ef48d2391ca7"/>
+<img width="695" height="164" alt="image" src="https://github.com/user-attachments/assets/6577e82a-4603-439d-9d34-722b1449a3c1" />
+
 
 ---
 

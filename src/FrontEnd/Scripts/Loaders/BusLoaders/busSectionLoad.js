@@ -1,3 +1,4 @@
+// Chargement de la première section des bus
 async function loadBusSection() {
     try {
     const res = await fetch("Frontend/Components/BusComponents/FirstSectionBus.html");

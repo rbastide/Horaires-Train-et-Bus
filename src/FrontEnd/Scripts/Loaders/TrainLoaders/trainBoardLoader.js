@@ -1,8 +1,31 @@
-document.addEventListener("DOMContentLoaded", () => {
-  fetch("FrontEnd/Components/TrainComponents/HoursTrainBoard.html")
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById("train-board-body").innerHTML = html;
-    })
-    .catch(err => console.error("Erreur chargement tableau train", err));
+// Chargement du tableau des trains
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    const container = document.getElementById("train-board-body");
+
+    if (!container) {
+      console.error("Le conteneur #train-board-body est introuvable.");
+      return;
+    }
+
+    const response = await fetch("./FrontEnd/Components/TrainComponents/HoursTrainBoard.html");
+
+    if (!response.ok) {
+      throw new Error(`Erreur chargement HoursTrainBoard.html : HTTP ${response.status}`);
+    }
+
+    const html = await response.text();
+    container.innerHTML = html;
+
+    console.log("HoursTrainBoard.html injecté avec succès");
+
+    if (typeof window.loadHoursTrainBoard === "function") {
+      await window.loadHoursTrainBoard();
+      console.log("Horaires train chargés");
+    } else {
+      console.warn("window.loadHoursTrainBoard n'est pas défini");
+    }
+  } catch (error) {
+    console.error("Erreur lors du chargement de la section train :", error);
+  }
 });

@@ -1,3 +1,4 @@
+// Chargement du footer du bus
 async function loadBusFooter() {
     try {
     const res = await fetch("Frontend/Components/BusComponents/FooterBus.html");

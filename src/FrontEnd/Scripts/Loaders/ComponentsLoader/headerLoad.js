@@ -1,3 +1,4 @@
+// Chargement du header
 async function loadHeader() {
   try {
     const res = await fetch("FrontEnd/Components/Header.html");

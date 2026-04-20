@@ -1,5 +1,5 @@
 /* =========================
-   CONFIG
+   Variables globales
    ========================= */
 
 const API_BASE = "http://localhost:3000/api";
@@ -7,7 +7,7 @@ const API_BASE = "http://localhost:3000/api";
 const STOP_AREA_PERIGUEUX = "stop_area:SNCF:87595009";
 
 /* =========================
-   FETCH DATA
+   Récupération des données importantes du train
    ========================= */
 
 async function fetchTrainBoardData(count = 10) {
@@ -26,7 +26,7 @@ async function fetchTrainBoardData(count = 10) {
 };
 
 /* =========================
-   BUILD ONE ROW
+   Construction des lignes du tableau dans la section train
    ========================= */
 
 function buildTrainRow(row) {
@@ -91,7 +91,7 @@ function buildTrainRow(row) {
 };
 
 /* =========================
-   RENDER TABLE
+   Affichage de la partie train
    ========================= */
 
 function renderTrainBoard(rows) {
@@ -110,7 +110,7 @@ function renderTrainBoard(rows) {
 }
 
 /* =========================
-   API PUBLIQUE
+   API Publique
    ========================= */
 
 window.loadHoursTrainBoard = async function () {

@@ -1,3 +1,4 @@
+// Chargement de la section des heures des bus
 async function loadHoursBusBoard() {
     try {
     const res = await fetch("FrontEnd/Components/BusComponents/HoursBusBoard.html");

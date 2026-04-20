@@ -2,14 +2,20 @@
    Variables globales
    ========================= */
 
-const API_BASE = "http://localhost:3000/api";
+/* Point d'entrée de l'API backend exposée via la configuration frontend */
+const API_BASE = window.APP_CONFIG?.API_BASE;
 
+/* Identifiant SNCF de la gare de Périgueux utilisé pour le tableau d'affichage */
 const STOP_AREA_PERIGUEUX = "stop_area:SNCF:87595009";
 
 /* =========================
    Récupération des données importantes du train
    ========================= */
 
+/*
+ * Récupère les prochains départs/arrivées pour la gare configurée.
+ * Le paramètre count permet de limiter le nombre de lignes retournées.
+ */
 async function fetchTrainBoardData(count = 10) {
   const url =
     `${API_BASE}/board` +
@@ -18,6 +24,7 @@ async function fetchTrainBoardData(count = 10) {
 
   const response = await fetch(url);
 
+  /* Remonte explicitement une erreur HTTP pour être gérée par l'appelant */
   if (!response.ok) {
     throw new Error(`HTTP ${response.status}`);
   }
@@ -29,9 +36,14 @@ async function fetchTrainBoardData(count = 10) {
    Construction des lignes du tableau dans la section train
    ========================= */
 
+/*
+ * Construit une ligne HTML du tableau train à partir d'un objet métier.
+ * Le rendu diffère légèrement si le train est en retard.
+ */
 function buildTrainRow(row) {
   const tr = document.createElement("tr");
 
+  /* Un retard existe dès que delay_minutes est supérieur à 0 */
   const isDelayed = Number(row.delay_minutes || 0) > 0;
 
   tr.innerHTML = `
@@ -94,6 +106,10 @@ function buildTrainRow(row) {
    Affichage de la partie train
    ========================= */
 
+/*
+ * Injecte toutes les lignes du tableau dans le tbody cible.
+ * Si le composant HTML n'est pas encore chargé, on sort proprement.
+ */
 function renderTrainBoard(rows) {
   const tbody = document.getElementById("train-departures-body");
 
@@ -102,6 +118,7 @@ function renderTrainBoard(rows) {
     return;
   }
 
+  /* Réinitialise le tableau avant de réinjecter les nouvelles données */
   tbody.innerHTML = "";
 
   rows.forEach((row) => {
@@ -113,10 +130,15 @@ function renderTrainBoard(rows) {
    API Publique
    ========================= */
 
+/*
+ * Fonction publique appelée depuis le chargement de la vue train.
+ * Elle récupère les données, normalise le format, puis déclenche le rendu.
+ */
 window.loadHoursTrainBoard = async function () {
   try {
     const data = await fetchTrainBoardData(10);
 
+    /* Accepte soit un tableau direct, soit un objet contenant une propriété rows */
     const rows = Array.isArray(data) ? data : (data.rows || []);
 
     if (!Array.isArray(rows)) {

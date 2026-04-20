@@ -56,10 +56,11 @@ Dans le fichier **.env**, vous devrez :
 - 🌐 **Renseigner l’URL de l’API SNCF** que vous souhaitez utiliser
 - 📍 **Définir le paramètre coverage** souhaité
 - 🚪 **Choisir le port** sur lequel le backend devra tourner
+- 🌐 **Choisir l'url publique** de votre backend sans le port
 
 👉 Exemple de fichier .env (à adapter selon vos besoins) :
 
-<img width="459" height="128" alt="image" src="https://github.com/user-attachments/assets/047257be-46b5-468b-8ca8-ef48d2391ca7" />
+<img width="459" height="128" alt="image" src="https://github.com/user-attachments/assets/047257be-46b5-468b-8ca8-ef48d2391ca7"/>
 
 ---
 

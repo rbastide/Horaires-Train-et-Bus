@@ -3,12 +3,12 @@ import { getDeparturesJson, getJourneysJson } from "../../services/sncfApi.js";
 import { delayMinutes, toHHMM, formatDuration, isTrain, getTerminusId, buildDisruptionMap, buildTerminusMap } from "../../utils/helpers.js";
 import dotenv from "dotenv";
 
-
+// Variable Globales
 const router = Router();
 const MAX_JOURNEYS_ENRICH = 6;
 
 
-// GET /api/board?stop_area=stop_area:SNCF:87595009&count=10
+// Création de la route pour récupérer les informations demandé pour la section train
 router.get("/board", async (req, res) => {
   try {
     const token = process.env.API_SNCF_KEY;

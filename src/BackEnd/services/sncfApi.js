@@ -1,9 +1,12 @@
 import { basicAuthHeader } from "../utils/helpers.js";
 import "dotenv/config";
 
+
+// Variables Globales
 const SNCF_BASE = process.env.SNCF_URL;
 const COVERAGE = process.env.COVERAGE;
 
+// Connexion à l'api SNCF
 export async function sncfFetchJson({ token, path, query = {}, timeoutMs = 8000 }) {
   const url = new URL(`${SNCF_BASE}${path}`);
 
@@ -31,6 +34,7 @@ export async function sncfFetchJson({ token, path, query = {}, timeoutMs = 8000 
   }
 }
 
+// Permet de se connecter à l'API des départs de train
 export function getDeparturesJson({ token, stopArea, count = 10, freshness = "realtime" }) {
   return sncfFetchJson({
     token,
@@ -39,6 +43,7 @@ export function getDeparturesJson({ token, stopArea, count = 10, freshness = "re
   });
 }
 
+// Permet de se connecter à l'API des trajets
 export function getJourneysJson({ token, from, to, datetime }) {
   return sncfFetchJson({
     token,

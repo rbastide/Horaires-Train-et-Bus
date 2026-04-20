@@ -2,8 +2,10 @@ import { Router } from "express";
 import { getJourneysJson } from "../../services/sncfApi.js";
 import dotenv from "dotenv";
 
+// Variable router
 const router = Router();
 
+// Création de la route pour récupérer les trajets
 router.get("/journeys", async (req, res) => {
   try {
     const { from, to, datetime } = req.query;

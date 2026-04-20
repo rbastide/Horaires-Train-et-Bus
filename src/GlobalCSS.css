@@ -2,7 +2,7 @@
    Variables de couleurs
    ========================= */
 :root{
-  --bg-dark: #030830; /* from Figma header */
+  --bg-dark: #030830;
   --White: #ffffff;
   --panel: #0b1030;
   --text: #000000;
@@ -15,6 +15,7 @@
   --train-F31: #A633F2;
   --train-F32: #7468ac;
   --train-L32: #3e844c;
+  --train-L34 : #3e844c;
   --bus-C: #DE1860;
   --bus-N:#3212E6;
   --bus-E6: #FFA500;
@@ -32,6 +33,7 @@
 .line-badge.L31{ background:var(--train-L31) }
 .line-badge.F32{ background:var(--train-F32) }
 .line-badge.L32{ background:var(--train-L32) }
+.line-badge.L34{ background:var(--train-L34) }
 
 /* Couleur badge bus */
 .line-badge.C{ background:var(--bus-C) }
@@ -42,20 +44,11 @@
 
 
 
-
-
-
-
-
 /* =========================
    Global resets
    ========================= */
 *{ box-sizing:border-box; }
 html,body{ height:100%; }
-
-
-
-
 
 
 
@@ -68,10 +61,6 @@ body{
   color:var(--text);
   background:linear-gradient(180deg,var(--White));
 }
-
-
-
-
 
 
 /* =========================

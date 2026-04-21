@@ -6,7 +6,7 @@
 const API_BASE = window.APP_CONFIG?.API_BASE;
 
 /* Identifiant SNCF de la gare de Périgueux utilisé pour le tableau d'affichage */
-const STOP_AREA_PERIGUEUX = "stop_area:SNCF:87595009";
+const STOP_AREA_PERIGUEUX = window.APP_CONFIG?.STOP_AREA;
 
 /* =========================
    Récupération des données importantes du train

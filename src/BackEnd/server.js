@@ -9,6 +9,7 @@ import departuresRouter from "./routes/TrainRoutes/departuresFetch.js";
 import journeysRouter from "./routes/TrainRoutes/journeysFetch.js";
 import boardRouter from "./routes/TrainRoutes/boardFetch.js";
 import configRouter from "./services/config.js";
+import boardBusRouter from "./routes/BusRoutes/boardBusFetch.js"
 
 // Port du backend
 const PORT = process.env.PORT;
@@ -22,6 +23,7 @@ app.use("/api", departuresRouter);
 app.use("/api", journeysRouter);
 app.use("/api", boardRouter);
 app.use("/api", configRouter)
+app.use("/api", boardBusRouter)
 
 
 // Lancement du server backend

@@ -87,3 +87,37 @@ export function buildDisruptionMap(apiJson) {
 
   return map;
 }
+
+// Conversion du temps en format hh:mm:ss en secondes
+function timeToSeconds(timeStr) {
+  const [time, period] = timeStr.split(" ");
+  let [hours, minutes, seconds] = time.split(":").map(Number);
+
+  if (period === "PM" && hours !== 12) {
+    hours += 12;
+  }
+  if (period === "AM" && hours === 12) {
+    hours = 0;
+  }
+
+  return hours * 3600 + minutes * 60 + seconds;
+}
+
+// Fonction récupérant le temps d'attente entre 2 temps 
+export function getWaitingTime(startTime, endTime) {
+  const startSeconds = timeToSeconds(startTime);
+  const endSeconds = timeToSeconds(endTime);
+
+  let diff = endSeconds - startSeconds;
+
+  // si on passe au jour suivant
+  if (diff < 0) {
+    diff += 24 * 3600;
+  }
+
+  const hours = Math.floor(diff / 3600);
+  const minutes = Math.floor((diff % 3600) / 60);
+  const seconds = diff % 60;
+
+  return `${hours}:${minutes}:${seconds}`;
+}

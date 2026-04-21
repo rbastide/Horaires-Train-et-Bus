@@ -2,6 +2,7 @@
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
+import { testDatabaseConnection } from "./services/databaseConnection.js"
 
 // Import des scripts des routes
 import departuresRouter from "./routes/TrainRoutes/departuresFetch.js";
@@ -22,5 +23,12 @@ app.use("/api", journeysRouter);
 app.use("/api", boardRouter);
 app.use("/api", configRouter)
 
+
 // Lancement du server backend
-app.listen(PORT, () => console.log(`✅ Proxy SNCF local: http://localhost:${PORT}`));
+testDatabaseConnection()
+    .then(() => {
+        app.listen(PORT, () => console.log(`✅ Proxy SNCF local: http://localhost:${PORT}`));
+    })
+    .catch((error) => {
+        console.error(" Erreur de connexion mySQL : ", error.message);
+    });

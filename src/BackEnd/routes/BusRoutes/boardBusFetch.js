@@ -5,6 +5,7 @@ import { getDestinationByStop } from "../../Queries/getDestinationByStop";
 import { getEstimatedTimeByStop } from "../../Queries/getEstimatedTimeByStop";
 import { getLineByStop } from "../../queries/getLineByStop";
 import { getWaitingTime } from "../../utils/helpers";
+import { toHHMM } from "../../utils/helpers";
 import dotenv from "dotenv";
 
 const router = Router();
@@ -14,7 +15,7 @@ router.get("/boardBus", async(req , res) => {
         const stop = getStop();
         const lineCode = getLineByStop(stop)
         const destination = getDestinationByStop(stop);
-        const estimatedTime = getEstimatedTimeByStop(stop);
+        const estimatedTime = toHHMM(getEstimatedTimeByStop(stop));
         const startedTime = new Date().toLocaleTimeString();
         const waitedTime = getWaitingTime(startedTime, estimatedTime);
         const rows = [];
@@ -23,7 +24,7 @@ router.get("/boardBus", async(req , res) => {
             stops: stop,
             destinations: destination,
             time: estimatedTime,
-            timeToWaite: waitedTime,
+            timeToWait: waitedTime,
         });
 
         return res.json({

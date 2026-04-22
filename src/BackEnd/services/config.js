@@ -9,7 +9,7 @@ const API_BASE = process.env.API_BASE;
 
 // Stop area du périgueux
 
-const STOP_AREA_PERIGUEUX = process.env.STOP_AREA_PERIGUEUX
+const STOP_AREA_PERIGUEUX = process.env.STOP_AREA
 
 // Création du routeur
 const router = Router();

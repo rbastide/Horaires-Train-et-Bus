@@ -35,7 +35,10 @@ cd src/BackEnd/
 
 , exécutez la commande suivante dans un terminal :
 ```bash
-npm install cors dotenv express
+npm install cors 
+npm install dotenv 
+npm install express 
+npm install mysql
 ```
 Si une confirmation est requise, tapez **y** puis appuyez sur **Entrée**
 
@@ -57,10 +60,16 @@ Dans le fichier **.env**, vous devrez :
 - 📍 **Définir le paramètre coverage** souhaité
 - 🚪 **Choisir le port** sur lequel le backend devra tourner
 - 🌐 **Choisir l'url publique** de votre backend sans le port
+- 🌐 **Saisissez l'url de base** sur laquelle l'application tourne
+- 👉 **Renseignez** ne numéro de la gare de votre choix (à récupérer depuis l'api Navitia)
+
+- 🌐 **Rentrez l'url** de votre base de données
+- 👉 **Saisissez le nom d'utilisateur** de votre base de données
+- 🚪 **Choisissez le port** de votre base de données
+- 📍 **Renseignez** votre mot de passe
+- 🔑 **Saisissez** votre nom de la base de données
 
 👉 Exemple de fichier .env (à adapter selon vos besoins) :
-
-<img width="626" height="148" alt="image" src="https://github.com/user-attachments/assets/177a9add-7ce7-4aec-b637-0e5df29a53c3" />
 
 ---
 

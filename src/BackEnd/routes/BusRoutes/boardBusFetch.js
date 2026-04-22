@@ -15,8 +15,8 @@ router.get("/boardBus", async(req , res) => {
         const lineCode = getLineByStop(stop)
         const destination = getDestinationByStop(stop);
         const estimatedTime = getEstimatedTimeByStop(stop);
-        const startedTime = new Date().toLocaleTimeString();
-        const waitedTime = getWaitingTime(startedTime, estimatedTime);
+        const localTime = new Date().toLocaleTimeString();
+        const waitedTime = getWaitingTime(localTime, estimatedTime);
         const rows = [];
         rows.push({
             line: lineCode,

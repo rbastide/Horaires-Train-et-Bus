@@ -71,6 +71,9 @@ Dans le fichier **.env**, vous devrez :
 
 👉 Exemple de fichier .env (à adapter selon vos besoins) :
 
+<img width="623" height="314" alt="image" src="https://github.com/user-attachments/assets/50f789dc-9e62-4950-93f9-1f24f9d0c029" />
+
+
 ---
 
 ## ▶️ Lancer l’application

@@ -5,7 +5,6 @@ import { getDestinationByStop } from "../../queries/getDestinationByStop.js";
 import { getEstimatedTimeByStop } from "../../queries/getEstimatedTimeByStop.js";
 import { getLineByStop } from "../../queries/getLineByStop.js";
 import { getWaitingTime, toHHMM } from "../../utils/helpers.js";
-import dotenv from "dotenv";
 
 const router = Router();
 

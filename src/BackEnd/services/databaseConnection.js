@@ -1,5 +1,4 @@
-import mysql from "mysql";
-
+import mysql from "mysql2";
 // Création d'un pool de connexions MySQL
 const pool = mysql.createPool({
   host: process.env.DB_HOST,

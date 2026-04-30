@@ -364,13 +364,14 @@ body{
   border-radius:999px;
   font-size:17px;
   width: 50%;
+  font-weight: 700;
+
 }
 
 /* Status du train à l'heure */
 .status.ontime{
   background:rgba(22,163,74,0.15);
   color:var(--success);
-  font-weight: normal;
 
 }
 
@@ -378,5 +379,11 @@ body{
 .status.delayed{
   background: rgb(238,41,90,0.15);
   color:var(--delayed-text);
-  font-weight: normal;
+}
+
+.TimeRealDate{
+  font-size:40px;
+  margin:0;
+  color:var(--White);
+  font-weight:700;
 }

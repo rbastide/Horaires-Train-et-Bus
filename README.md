@@ -90,3 +90,28 @@ Le backend, frontend ainsi que la page s'ouvre automatiquement sur les port que 
 
 ## ✅ Application prête
 L’application est maintenant lancée et prête à être utilisée 🚀
+
+--- 
+
+## Modifier l'intervalle
+
+Pour modifier l'intervalle il faut se rendre dans le fichier : 
+```bash
+sectionRotate.js
+```
+qui se trouve dans FrontEnd/Scripts
+
+Ensuite, dans la méthode : 
+```js
+initSection()
+```
+A la fin du try modifier le chiffre, il est sous le format milisecondes donc
+
+- 1 = 1 miliseconde
+- 10 = 1 centième
+- 100 = 1 dixième
+- 1000 = 1 seconde
+- 10000 = 10 secondes
+- etc
+
+---

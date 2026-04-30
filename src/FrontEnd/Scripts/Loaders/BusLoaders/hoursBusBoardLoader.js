@@ -113,11 +113,14 @@ function renderBusBoard(rows) {
 
   /* Réinitialise le tableau avant de réinjecter les nouvelles données */
   tbody.innerHTML = "";
-
+  let rowLength = 0;
   rows.forEach((row) => {
+    rowLength++;
+    if (rowLength < 15){
     tbody.appendChild(buildBusRow(row));
+    }
   });
-}
+  }
 
 /* =========================
    API Publique

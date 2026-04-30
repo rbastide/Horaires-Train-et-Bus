@@ -99,7 +99,7 @@ export function buildDisruptionMap(apiJson) {
 }
 
 // Conversion du temps en format hh:mm:ss en secondes
-function timeToSeconds(timeStr) {
+export function timeToSeconds(timeStr) {
   const [time, period] = timeStr.split(" ");
   let [hours, minutes, seconds] = time.split(":").map(Number);
 
@@ -115,8 +115,8 @@ function timeToSeconds(timeStr) {
 
 // Fonction récupérant le temps d'attente entre 2 temps 
 export function getWaitingTime(startTime, endTime) {
-  const startSeconds = timeToSeconds(startTime);
-  const endSeconds = timeToSeconds(endTime);
+  const startSeconds = startTime;
+  const endSeconds = endTime;
 
   let diff = endSeconds - startSeconds;
 
@@ -130,4 +130,13 @@ export function getWaitingTime(startTime, endTime) {
   const seconds = diff % 60;
 
   return `${hours}:${minutes}:${seconds}`;
+}
+
+export function timeInSecondesToTimeInMinutes(timeInSeconds) {
+
+  const minutes = Math.floor(timeInSeconds / 60);
+  const seconds = timeInSeconds % 60;
+
+  return `${minutes}:${String(seconds).padStart(2, "0")}`;
+
 }

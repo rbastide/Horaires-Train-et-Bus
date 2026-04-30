@@ -29,7 +29,7 @@ function rotateSection() {
   const trainSection = getEl('train-section-placeholder');
   const trainBoard = getEl('train-board-body');
   const busSection = getEl('bus-section-placeholder');
-  const busBoard = getEl('hours-bus-board-placeholder');
+  const busBoard = getEl('bus-board-body');
   const busFooter = getEl('footer-bus-placeholder');
 
   // Test si il existe les éléments suivant : trainSection, trainBoard, busSection, busBoard, busFooter
@@ -49,6 +49,11 @@ function rotateSection() {
 
     currentSection = 'bus';
     console.log('Affichage: Section Bus');
+
+    // Recharge si la fonction existe
+    if (typeof loadHoursBusBoard === 'function') {
+      loadHoursBusBoard();
+    }
   } 
   //Partie Train
   else {
@@ -79,12 +84,13 @@ async function initSections() {
 
     // Charger bus ensuite
     await loadBusSection();
+    await new Promise(requestAnimationFrame);
     await loadHoursBusBoard();
     await loadBusFooter();
 
     // Placeholders des bus
     const busSection = getEl('bus-section-placeholder');
-    const busBoard = getEl('hours-bus-board-placeholder');
+    const busBoard = getEl('bus-board-body');
     const busFooter = getEl('footer-bus-placeholder');
 
     // Désactiver l'affichage de la section bus

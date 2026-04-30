@@ -1,29 +1,50 @@
 import { Router } from "express";
-import { getAllResources } from "../../queries/getAllResources.js";
-import { getStop } from "../../queries/getStop.js";
-import { getDestinationByStop } from "../../queries/getDestinationByStop.js";
-import { getEstimatedTimeByStop } from "../../queries/getEstimatedTimeByStop.js";
-import { getLineByStop } from "../../queries/getLineByStop.js";
+import { getDestinationCodeAndLabel } from "../../queries/getDestinationCodeAndLabel.js";
 import { getWaitingTime, toHHMM } from "../../utils/helpers.js";
+import { getEstimatedAndScheduledTime } from "../../queries/getEstimatedAndScheduledTime.js";
+import { getLineIdAndLineCode } from "../../queries/getLineIdLineAndLineCode.js";
+import { getStopIdStopCodeStopLabelOfEveryTrainStation } from "../../queries/getStopIdStopCodeStopLabel.js";
 
 const router = Router();
 
-router.get("/boardBus", async(req , res) => {
+router.get("/busBoard", async(req , res) => {
     try{
-        const stop = getStop();
-        const lineCode = getLineByStop(stop)
-        const destination = getDestinationByStop(stop);
-        const estimatedTime = getEstimatedTimeByStop(stop);
-        const localTime = new Date().toLocaleTimeString();
-        const waitedTime = getWaitingTime(localTime, estimatedTime);
+        const stops = await getStopIdStopCodeStopLabelOfEveryTrainStation();
+
+        const lineCode = await getLineIdAndLineCode();
+
+        const destination = await getDestinationCodeAndLabel();
+        const localTime = new Date().toLocaleTimeString("it-IT");
+        const estimatedTime = await getEstimatedAndScheduledTime(localTime);
+
         const rows = [];
-        rows.push({
-            line: lineCode,
-            stops: stop,
-            destinations: destination,
-            time: toHHMM(estimatedTime),
-            timeToWait: waitedTime,
+
+        // Iterate through line codes (which should be the detailed data)
+        stops?.forEach(stop => {
+            
+            // Find corresponding destination for this stop
+            const dest = destination?.find(d => d.link_stop_start_id === stop.stop_id);
+            // Find corresponding time data for this stop
+            const time = estimatedTime?.find(t => t.stop_id === stop.stop_id);            
+
+            // Find corresponding stop label for this stop
+            const line = lineCode?.find(l => l.link_stop_start_id === stop.stop_id);
+
+            if (time && dest && line) {
+                const estimatedT = time.passing_time_estimated || time.passing_time_scheduled;
+                const waitedTime = getWaitingTime(localTime, estimatedT);
+
+                rows.push({
+                    line: line.line_code,
+                    stops: stop.stop_label,
+                    destinations: dest?.route_destination_label || "--",
+                    passing_time: estimatedT,
+                    timeToWait: waitedTime,
+                });
+            }
         });
+
+        console.log(rows);
 
         return res.json({
             total : rows.length,
@@ -31,6 +52,7 @@ router.get("/boardBus", async(req , res) => {
         });
     }
     catch (e) {
+        console.error("Une erreur est survenue !");
         return res.status(500).json({error: String(e)});
         }
     

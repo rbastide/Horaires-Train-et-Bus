@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
-    const response = await fetch("./FrontEnd/Components/TrainComponents/HoursBusBoard.html");
+    const response = await fetch("./FrontEnd/Components/BusComponents/HoursBusBoard.html");
 
     if (!response.ok) {
       throw new Error(`Erreur chargement HoursBusBoard.html : HTTP ${response.status}`);
@@ -21,11 +21,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (typeof window.loadHoursBusBoard === "function") {
       await window.loadHoursBusBoard();
-      console.log("Horaires train chargés");
+      console.log("Horaires bus chargés");
     } else {
       console.warn("window.loadHoursBusBoard n'est pas défini");
     }
   } catch (error) {
-    console.error("Erreur lors du chargement de la section train :", error);
+    console.error("Erreur lors du chargement de la section bus :", error);
   }
 });

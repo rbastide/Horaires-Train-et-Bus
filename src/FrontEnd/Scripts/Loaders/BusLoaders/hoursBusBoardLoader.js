@@ -3,7 +3,7 @@
    ========================= */
 
 /* Point d'entrée de l'API backend exposée via la configuration frontend */
-const API_BASE = window.APP_CONFIG?.API_BASE;
+const BASE_API = window.APP_CONFIG?.API_BASE;
 
 /* =========================
    Récupération des données importantes du train
@@ -14,7 +14,7 @@ const API_BASE = window.APP_CONFIG?.API_BASE;
  * Le paramètre count permet de limiter le nombre de lignes retournées.
  */
 async function fetchBusBoardData() {
-  const url = `${API_BASE}/busBoard`;
+  const url = `${BASE_API}/busBoard`;
 
   const response = await fetch(url);
 
@@ -103,7 +103,7 @@ function renderBusBoard(rows) {
   tbody.innerHTML = "";
 
   rows.forEach((row) => {
-    tbody.appendChild(buildTrainRow(row));
+    tbody.appendChild(buildBusRow(row));
   });
 }
 
@@ -117,7 +117,7 @@ function renderBusBoard(rows) {
  */
 window.loadHoursBusBoard = async function () {
   try {
-    const data = await fetchBusBoardData;
+    const data = await fetchBusBoardData();
 
     /* Accepte soit un tableau direct, soit un objet contenant une propriété rows */
     const rows = Array.isArray(data) ? data : (data.rows || []);

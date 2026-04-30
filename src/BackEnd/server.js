@@ -22,8 +22,8 @@ app.use(cors({ origin: true }));
 app.use("/api", departuresRouter);
 app.use("/api", journeysRouter);
 app.use("/api", boardRouter);
-app.use("/api", configRouter)
-app.use("/api", boardBusRouter)
+app.use("/api", configRouter);
+app.use("/api", boardBusRouter);
 
 
 // Lancement du server backend

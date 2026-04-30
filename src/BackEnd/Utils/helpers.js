@@ -10,6 +10,12 @@ export function toHHMM(dt) {
   return dt.slice(9, 11) + ":" + dt.slice(11, 13);
 }
 
+// Fonction de conversion des heures en format MMSS
+export function toMMSS(dt) {
+  if (!dt) return "--:--";
+  return dt.slice(2,8);
+}
+
 // Fonction de conversion de la date donnée par Navitia en format YYYY MM DD HH mm SS
 export function parseNavitiaDate(dt) {
   const y = +dt.slice(0, 4);

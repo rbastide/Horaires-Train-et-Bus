@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { getDestinationCodeAndLabel } from "../../queries/getDestinationCodeAndLabel.js";
-import { getWaitingTime, toHHMM } from "../../utils/helpers.js";
+import { getWaitingTime, toHHMM, toMMSS } from "../../utils/helpers.js";
 import { getEstimatedAndScheduledTime } from "../../queries/getEstimatedAndScheduledTime.js";
 import { getLineIdAndLineCode } from "../../queries/getLineIdLineAndLineCode.js";
 import { getStopIdStopCodeStopLabelOfEveryTrainStation } from "../../queries/getStopIdStopCodeStopLabel.js";
@@ -33,14 +33,14 @@ router.get("/busBoard", async(req , res) => {
 
             if (time && dest && line) {
                 const realTime = time.passing_time_estimated || time.passing_time_scheduled;
-                const waitedTime = getWaitingTime(localTime, realTime);
+                const waitedTime = toMMSS(getWaitingTime(localTime, realTime));
                 
 
                 rows.push({
                     line: line.line_code,
                     stops: stop.stop_label,
                     destinations: dest?.route_destination_label || "--",
-                    passing_time: realTime,
+                    passing_time: (realTime),
                     timeToWait: waitedTime,
                 });
             }

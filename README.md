@@ -38,7 +38,7 @@ cd src/BackEnd/
 npm install cors 
 npm install dotenv 
 npm install express 
-npm install mysql
+npm install mysql2
 ```
 Si une confirmation est requise, tapez **y** puis appuyez sur **Entrée**
 
@@ -71,8 +71,7 @@ Dans le fichier **.env**, vous devrez :
 
 👉 Exemple de fichier .env (à adapter selon vos besoins) :
 
-<img width="623" height="314" alt="image" src="https://github.com/user-attachments/assets/50f789dc-9e62-4950-93f9-1f24f9d0c029" />
-
+<img width="619" height="349" alt="image" src="https://github.com/user-attachments/assets/2924ba4b-1070-4da2-b555-d5963cb9fa6d" />
 
 ---
 
@@ -113,5 +112,8 @@ A la fin du try modifier le chiffre, il est sous le format milisecondes donc
 - 1000 = 1 seconde
 - 10000 = 10 secondes
 - etc
+
+<img width="678" height="153" alt="image" src="https://github.com/user-attachments/assets/cb91cd10-51e0-4c5c-8ffd-b1167e5e3957" />
+
 
 ---

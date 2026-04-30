@@ -29,16 +29,18 @@ router.get("/busBoard", async(req , res) => {
 
             // Find corresponding stop label for this stop
             const line = lineCode?.find(l => l.link_stop_start_id === stop.stop_id);
+            
 
             if (time && dest && line) {
-                const estimatedT = time.passing_time_estimated || time.passing_time_scheduled;
-                const waitedTime = getWaitingTime(localTime, estimatedT);
+                const realTime = time.passing_time_estimated || time.passing_time_scheduled;
+                const waitedTime = getWaitingTime(localTime, realTime);
+                
 
                 rows.push({
                     line: line.line_code,
                     stops: stop.stop_label,
                     destinations: dest?.route_destination_label || "--",
-                    passing_time: estimatedT,
+                    passing_time: realTime,
                     timeToWait: waitedTime,
                 });
             }

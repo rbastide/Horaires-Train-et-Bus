@@ -67,7 +67,7 @@ function buildBusRow(row) {
 
                       <!-- Colonne 4 -->
                       <div class="DepartTime">
-                        Prévu . ${row.time}
+                        Prévu . ${row.realTime}
                       </div>
 
                       <!-- Colonne 5 -->

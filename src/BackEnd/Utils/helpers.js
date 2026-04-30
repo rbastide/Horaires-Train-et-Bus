@@ -9,6 +9,10 @@ export function toHHMM(dt) {
   if (!dt) return "--:--";
   return dt.slice(9, 11) + ":" + dt.slice(11, 13);
 }
+export function toHHMMit(dt) {
+  if (!dt) return "--:--";
+  return dt.slice(0,5);
+}
 
 // Fonction de conversion des heures en format MMSS
 export function toMMSS(dt) {

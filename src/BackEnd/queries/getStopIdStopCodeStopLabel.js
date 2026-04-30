@@ -1,6 +1,6 @@
 import { query } from "../services/databaseConnection.js";
 
 export async function getStopIdStopCodeStopLabelOfEveryTrainStation(){
-    const rows = await query('SELECT s.stop_id, s.stop_code, s.stop_label FROM v_avl_rt_stops s WHERE s.stop_label = "Gare SNCF" OR s.stop_label = "PEM";')
+    const rows = await query('SELECT pt.stop_id, pt.stop_code, pt.stop_label FROM v_avl_rt_passing_times pt WHERE pt.stop_label IN ("Gare SNCF","PEM") GROUP BY pt.stop_id, pt.stop_code, pt.stop_label;');
     return rows || null;
 }

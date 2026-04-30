@@ -2,7 +2,7 @@ import { Router } from "express";
 import { getDestinationCodeAndLabel } from "../../queries/getDestinationCodeAndLabel.js";
 import { getWaitingTime, toHHMM, toMMSS,toHHMMit, timeInSecondesToTimeInMinutes, timeToSeconds } from "../../utils/helpers.js";
 import { getEstimatedAndScheduledTime } from "../../queries/getEstimatedAndScheduledTime.js";
-import { getLineIdAndLineCode } from "../../queries/getLineIdLineAndLineCode.js";
+import { getLineIdAndLineCode } from "../../queries/getLineIdAndLineCode.js";
 import { getStopIdStopCodeStopLabelOfEveryTrainStation } from "../../queries/getStopIdStopCodeStopLabel.js";
 
 const router = Router();
@@ -20,22 +20,18 @@ router.get("/busBoard", async(req , res) => {
         const rows = [];
 
         // Iterate through line codes (which should be the detailed data)
-        stops?.forEach(stop => {
-            
-            // Find corresponding destination for this stop
-            const dest = destination?.find(d => d.link_stop_start_id === stop.stop_id);
-            // Find corresponding time data for this stop
-            const time = estimatedTime?.find(t => t.stop_id === stop.stop_id);            
+        estimatedTime?.forEach(esTime => {
 
             // Find corresponding stop label for this stop
-            const line = lineCode?.find(l => l.link_stop_start_id === stop.stop_id);
-            
-
-            if (time && dest && line) {
-                const realTime = time.passing_time_estimated || time.passing_time_scheduled;
+            const line = lineCode?.find(l => l.link_stop_start_id === esTime.stop_id);
+            // Find corresponding destination for this stop
+            const dest = destination?.find(d => d.link_stop_start_id === esTime.stop_id);
+            // Find corresponding time data for this stop
+            const stop = stops?.find(s => s.stop_id === esTime.stop_id);
+            if (stop && dest && line) {
+                const realTime = esTime.passing_time_estimated || esTime.passing_time_scheduled;
                 const waitedTime = timeInSecondesToTimeInMinutes(timeToSeconds(getWaitingTime(timeToSeconds(localTime), timeToSeconds(realTime))));
                 
-
                 rows.push({
                     line: line.line_code,
                     stops: stop.stop_label,

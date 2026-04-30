@@ -73,7 +73,6 @@ function buildBusRow(row) {
                       <!-- Colonne 5 -->
                       <div class="Attente">
                             ${row.timeToWait}
-                            <img src="Logo/T.png" alt="Logo - Heure Théorique" class="TableauLignesBus">
                       </div>
 
                       </div>

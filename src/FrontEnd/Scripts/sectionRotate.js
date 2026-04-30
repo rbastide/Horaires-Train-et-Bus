@@ -30,10 +30,9 @@ function rotateSection() {
   const trainBoard = getEl('train-board-body');
   const busSection = getEl('bus-section-placeholder');
   const busBoard = getEl('bus-board-body');
-  const busFooter = getEl('footer-bus-placeholder');
 
   // Test si il existe les éléments suivant : trainSection, trainBoard, busSection, busBoard, busFooter
-  if (!trainSection || !trainBoard || !busSection || !busBoard || !busFooter) {
+  if (!trainSection || !trainBoard || !busSection || !busBoard) {
     console.warn('[sectionRotate] Rotation annulée : un ou plusieurs éléments sont absents du DOM.');
     return;
   }
@@ -45,7 +44,6 @@ function rotateSection() {
     setDisplay(trainBoard, 'none');
     setDisplay(busSection, 'block');
     setDisplay(busBoard, 'block');
-    setDisplay(busFooter, 'block');
 
     currentSection = 'bus';
     console.log('Affichage: Section Bus');
@@ -62,7 +60,6 @@ function rotateSection() {
     setDisplay(trainBoard, 'block');
     setDisplay(busSection, 'none');
     setDisplay(busBoard, 'none');
-    setDisplay(busFooter, 'none');
 
     currentSection = 'train';
     console.log('Affichage: Section Train');
@@ -86,17 +83,14 @@ async function initSections() {
     await loadBusSection();
     await new Promise(requestAnimationFrame);
     await loadHoursBusBoard();
-    await loadBusFooter();
 
     // Placeholders des bus
     const busSection = getEl('bus-section-placeholder');
     const busBoard = getEl('bus-board-body');
-    const busFooter = getEl('footer-bus-placeholder');
 
     // Désactiver l'affichage de la section bus
     setDisplay(busSection, 'none');
     setDisplay(busBoard, 'none');
-    setDisplay(busFooter,'none');
 
     // Afficher en console que les sections sont chargés
     console.log('Sections chargées - Rotation chaque 30 secondes');

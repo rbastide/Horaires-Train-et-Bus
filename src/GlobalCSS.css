@@ -16,11 +16,15 @@
   --train-F32: #7468ac;
   --train-L32: #3e844c;
   --train-L34 : #3e844c;
-  --bus-C: #DE1860;
-  --bus-N:#3212E6;
-  --bus-E6: #FFA500;
-  --bus-B: #217FF3;
-  --bus-A: #F3E11A;
+  --bus-C: rgb(255,0,255);
+  --bus-N:rgb(0,0,139);
+  --bus-e6: rgb(255,153,0);
+  --bus-B: rgb(0,128,255);
+  --bus-A: rgb(255,215,0);
+  --bus-K4A: rgb(64,224,208);
+  --bus-K4B: rgb(192,192,192);
+  --bus-e1: rgb(255,153,0);
+  --bus-e5: rgb(255,153,0);
   --delayed-text : #EA2222;
   --delayed: #E47526;
   --scheduled-Time: #5DC810;
@@ -38,9 +42,13 @@
 /* Couleur badge bus */
 .line-badge.C{ background:var(--bus-C) }
 .line-badge.N{ background:var(--bus-N) }
-.line-badge.E6{ background:var(--bus-E6) }
+.line-badge.e6{ background:var(--bus-e6) }
 .line-badge.B{ background:var(--bus-B) }
 .line-badge.A{ background:var(--bus-A) }
+.line-badge.K4A{ background:var(--bus-K4A) }
+.line-badge.K4B{ background:var(--bus-K4B) }
+.line-badge.e1{ background:var(--bus-e1) }
+.line-badge.e5{ background:var(--bus-e5) }
 
 
 

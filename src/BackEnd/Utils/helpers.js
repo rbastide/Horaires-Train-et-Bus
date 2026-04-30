@@ -9,6 +9,16 @@ export function toHHMM(dt) {
   if (!dt) return "--:--";
   return dt.slice(9, 11) + ":" + dt.slice(11, 13);
 }
+export function toHHMMit(dt) {
+  if (!dt) return "--:--";
+  return dt.slice(0,5);
+}
+
+// Fonction de conversion des heures en format MMSS
+export function toMMSS(dt) {
+  if (!dt) return "--:--";
+  return dt.slice(2,8);
+}
 
 // Fonction de conversion de la date donnée par Navitia en format YYYY MM DD HH mm SS
 export function parseNavitiaDate(dt) {
@@ -86,4 +96,47 @@ export function buildDisruptionMap(apiJson) {
   }
 
   return map;
+}
+
+// Conversion du temps en format hh:mm:ss en secondes
+export function timeToSeconds(timeStr) {
+  const [time, period] = timeStr.split(" ");
+  let [hours, minutes, seconds] = time.split(":").map(Number);
+
+  if (period === "PM" && hours !== 12) {
+    hours += 12;
+  }
+  if (period === "AM" && hours === 12) {
+    hours = 0;
+  }
+
+  return hours * 3600 + minutes * 60 + seconds;
+}
+
+// Fonction récupérant le temps d'attente entre 2 temps 
+export function getWaitingTime(startTime, endTime) {
+  const startSeconds = startTime;
+  const endSeconds = endTime;
+
+  let diff = endSeconds - startSeconds;
+
+  // si on passe au jour suivant
+  if (diff < 0) {
+    diff += 24 * 3600;
+  }
+
+  const hours = Math.floor(diff / 3600);
+  const minutes = Math.floor((diff % 3600) / 60);
+  const seconds = diff % 60;
+
+  return `${hours}:${minutes}:${seconds}`;
+}
+
+export function timeInSecondesToTimeInMinutes(timeInSeconds) {
+
+  const minutes = Math.floor(timeInSeconds / 60);
+  const seconds = timeInSeconds % 60;
+
+  return `${minutes}:${String(seconds).padStart(2, "0")}`;
+
 }

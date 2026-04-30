@@ -22,6 +22,7 @@ router.get("/busBoard", async(req , res) => {
         // Iterate through line codes (which should be the detailed data)
         estimatedTime?.forEach(esTime => {
 
+
             // Find corresponding stop label for this stop
             const line = lineCode?.find(l => l.link_stop_start_id === esTime.stop_id);
             // Find corresponding destination for this stop

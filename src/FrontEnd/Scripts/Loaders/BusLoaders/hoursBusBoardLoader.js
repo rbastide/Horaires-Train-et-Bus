@@ -38,7 +38,8 @@ function buildBusRow(row) {
   const tr = document.createElement("tr");
 
   /* Un retard existe dès que delay_minutes est supérieur à 0 */
-  const isDelayed = Number(row.delay_minutes || 0) > 0;
+  const isAMinute = Number(row.timeToWait < 60);
+
 
   tr.innerHTML = `
     <td colspan="5">
@@ -69,11 +70,23 @@ function buildBusRow(row) {
                       <div class="DepartTime">
                         Prévu . ${row.passing_time}
                       </div>
-
+                       
                       <!-- Colonne 5 -->
-                      <div class="Attente">
-                            ${row.timeToWait}
+
+                      ${ isAMinute ? 
+                        `
+                        <div class="Attente">
+                            Moins d'1 min
                       </div>
+                        `
+                        :
+                        `
+                        <div class="Attente">
+                            ${Math.floor(Number(row.timeToWait) / 60)} min
+                        </div>
+                        `
+                      }
+                      
 
                       </div>
                     </div>
@@ -127,6 +140,6 @@ window.loadHoursBusBoard = async function () {
 
     renderBusBoard(rows);
   } catch (error) {
-    console.error("Erreur chargement horaires train :", error);
+    console.error("Erreur chargement horaires bus :", error);
   }
 };

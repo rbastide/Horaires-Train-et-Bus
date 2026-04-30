@@ -31,7 +31,7 @@ router.get("/busBoard", async(req , res) => {
             const stop = stops?.find(s => s.stop_id === esTime.stop_id);
             if (stop && dest && line) {
                 const realTime = esTime.passing_time_estimated || esTime.passing_time_scheduled;
-                const waitedTime = timeInSecondesToTimeInMinutes(timeToSeconds(getWaitingTime(timeToSeconds(localTime), timeToSeconds(realTime))));
+                const waitedTime = timeToSeconds(getWaitingTime(timeToSeconds(localTime), timeToSeconds(realTime)));
                 
                 rows.push({
                     line: line.line_code,

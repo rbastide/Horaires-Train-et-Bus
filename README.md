@@ -10,6 +10,8 @@ Ce document explique comment installer le projet, configurer le fichier `.env` e
   👉 Téléchargement : https://nodejs.org/en/download
 
 - **Git** installé sur votre machine
+  👉 Si non télécharger je conseille : Git Bash
+    - https://gitforwindows.org/
 
 ---
 

@@ -9,9 +9,8 @@ Ce document explique comment installer le projet, configurer le fichier `.env` e
 - **Node.js** version **18.x.x ou supérieure**  
   👉 Téléchargement : https://nodejs.org/en/download
 
-- **Git** installé sur votre machine
-  👉 Si non télécharger je conseille : Git Bash
-    - https://gitforwindows.org/
+- **Git** installé sur votre machine  
+  👉 Si non télécharger, je conseille : Git bash -> : https://gitforwindows.org/
 
 ---
 

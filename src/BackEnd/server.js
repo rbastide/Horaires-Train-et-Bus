@@ -31,7 +31,6 @@ app.use("/api", boardBusRouter);
 // Lancement du server backend
 testDatabaseConnection()
     .then(() => {
-        console.log("------------------------");
         app.listen(PORT, () => console.log(`✅ Serveur Backend : ${BASE_URL_BACKEND}:${PORT}`));
         console.log("------------------------");
     })

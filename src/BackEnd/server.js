@@ -14,6 +14,8 @@ import boardBusRouter from "./routes/BusRoutes/boardBusFetch.js"
 // Port du backend
 const PORT = process.env.PORT;
 
+const BASE_URL_BACKEND = process.env.API_BASE;
+
 // Création de l'application express
 const app = express();
 app.use(cors({ origin: true }));
@@ -29,7 +31,9 @@ app.use("/api", boardBusRouter);
 // Lancement du server backend
 testDatabaseConnection()
     .then(() => {
-        app.listen(PORT, () => console.log(`✅ Proxy SNCF local: http://localhost:${PORT}`));
+        console.log("------------------------");
+        app.listen(PORT, () => console.log(`✅ Serveur Backend : ${BASE_URL_BACKEND}:${PORT}`));
+        console.log("------------------------");
     })
     .catch((error) => {
         console.error(" Erreur de connexion mySQL : ", error.message);

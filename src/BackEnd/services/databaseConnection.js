@@ -31,7 +31,7 @@ export function testDatabaseConnection() {
         return;
       }
 
-      console.log("Connexion réussi avec succès ! ");
+      console.log("Connexion à la base de donnée réussi avec succès ! ");
       connection.release();
       resolve();
     });

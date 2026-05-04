@@ -43,6 +43,27 @@ npm install mysql2
 ```
 Si une confirmation est requise, tapez **y** puis appuyez sur **Entrée**
 
+### Information certificat auto signé
+
+Si vous avez des problèmes de certificats du type : 
+```bash
+$ npm install coffee-script
+npm http GET https://registry.npmjs.org/coffee-script
+npm http GET https://registry.npmjs.org/coffee-script
+npm http GET https://registry.npmjs.org/coffee-script
+npm ERR! Error: tunneling socket could not be established, sutatusCode=403
+npm ERR!     at ClientRequest.onConnect (c:\Program Files\nodejs\node_modules\npm\node_modules\request\tunnel.js:148:19)
+npm ERR!     at ClientRequest.g (events.js:193:14)
+npm ERR!     at ClientRequest.EventEmitter.emit (events.js:123:20)
+npm ERR!     at Socket.socketOnData (http.js:1393:11)
+npm ERR!     at TCP.onread (net.js:403:27)
+```
+
+Renseignez cette commande : 
+```bash
+npm set strict-ssl false
+```
+
 ---
 
 ## 🔐 Configuration du fichier .env

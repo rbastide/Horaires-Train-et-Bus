@@ -66,7 +66,7 @@ Dans le fichier **.env**, vous devrez :
 - 🌐 **Rentrez l'url** de votre base de données
 - 👉 **Saisissez le nom d'utilisateur** de votre base de données
 - 🚪 **Choisissez le port** de votre base de données
-- 📍 **Renseignez** votre mot de passe
+- 📍 **Renseignez** le mot de passe de votre base de données
 - 🔑 **Saisissez** votre nom de la base de données
 
 👉 Exemple de fichier .env (à adapter selon vos besoins) :
@@ -77,34 +77,34 @@ Dans le fichier **.env**, vous devrez :
 
 ## ▶️ Lancer l’application
 
-Une fois toutes les étapes précédentes terminées :
+Une fois toutes les **étapes** précédentes terminées :
 ✅ **Double-cliquez sur le fichier** :
 
 ```bash
 Lancement.bat
 ```
-Le backend, frontend ainsi que la page s'ouvre automatiquement sur les port que vous avez défini dans le **.env**
+Le backend, frontend ainsi que la page s'ouvre **automatiquement** sur les port que vous avez défini dans le **.env**
 
 --- 
 
 ## ✅ Application prête
-L’application est maintenant lancée et prête à être utilisée 🚀
+**L’application est maintenant lancée et prête à être utilisée 🚀**
 
 --- 
 
 ## Modifier l'intervalle
 
-Pour modifier l'intervalle de changement d'écran il faut se rendre dans le fichier : 
+Pour modifier **l'intervalle de changement** d'écran il faut se rendre dans le fichier : 
 ```bash
 sectionRotate.js
 ```
-qui se trouve dans FrontEnd/Scripts
+qui se trouve dans **FrontEnd/Scripts**
 
 Ensuite, dans la méthode : 
 ```js
 initSection()
 ```
-A la fin du try modifier le chiffre, il est sous le format milisecondes donc
+A la fin du **try** modifier le chiffre, il est sous le format **milisecondes** donc
 
 - 1 = 1 miliseconde
 - 10 = 1 centième
@@ -119,41 +119,43 @@ A la fin du try modifier le chiffre, il est sous le format milisecondes donc
 
 ### Section train
 
-Le tableau des trains est fixé à 10 lignes, cependant vous pouvez le modifier
+Le tableau des trains est **fixé à 10 lignes**, cependant vous pouvez le **modifier**
 
 Il faut se rendre dans 
 ```bash
 hoursTrainBoardLoader.js
 ```
 
-Et tout en bas dans l'appelle de la fenêtre, il faut modifier, dans la variable,  
+Et tout en bas dans l'appelle de la fenêtre, il faut modifier, dans la **variable**,  
 ```js
 const data
 ```
 
-Le nombre passé en paramètre de la méthode 
+Le nombre passé en **paramètre** de la méthode 
 ```js
 fetchTrainBoardData() 
 ```
 
-Le nombre étant le nombre de ligne du tableau
+Le **chiffre renseigné** étant le nombre de ligne du tableau
 
 ### Section bus
 
-Le tableau des bus est fixé a 15 lignes, pour le modifier il faut se rendre dans 
+Le tableau des bus est **fixé a 15 lignes**, pour le **modifier** il faut se rendre dans 
 
 ```bash
 hoursBusBoardLoader.js
 ```
 
-Puis modifier, dans la méthode 
+Puis **modifier**, dans la méthode 
 ```js
 renderBusBoard()
 ```
+
 dans la condition, 
 ```js
 if (rowLength < 15)
 ```
-le nombre qui correspond aux nombre de lignes du tableau
+
+le chiffre qui correspond aux **nombre de lignes du tableau**.
 
 ---

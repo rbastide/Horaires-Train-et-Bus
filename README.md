@@ -94,7 +94,7 @@ L’application est maintenant lancée et prête à être utilisée 🚀
 
 ## Modifier l'intervalle
 
-Pour modifier l'intervalle il faut se rendre dans le fichier : 
+Pour modifier l'intervalle de changement d'écran il faut se rendre dans le fichier : 
 ```bash
 sectionRotate.js
 ```
@@ -115,5 +115,45 @@ A la fin du try modifier le chiffre, il est sous le format milisecondes donc
 
 <img width="678" height="153" alt="image" src="https://github.com/user-attachments/assets/cb91cd10-51e0-4c5c-8ffd-b1167e5e3957" />
 
+## Modifier le nombre de ligne du tableau
+
+### Section train
+
+Le tableau des trains est fixé à 10 lignes, cependant vous pouvez le modifier
+
+Il faut se rendre dans 
+```bash
+hoursTrainBoardLoader.js
+```
+
+Et tout en bas dans l'appelle de la fenêtre, il faut modifier, dans la variable,  
+```js
+const data
+```
+
+Le nombre passé en paramètre de la méthode 
+```js
+fetchTrainBoardData() 
+```
+
+Le nombre étant le nombre de ligne du tableau
+
+### Section bus
+
+Le tableau des bus est fixé a 15 lignes, pour le modifier il faut se rendre dans 
+
+```bash
+hoursBusBoardLoader.js
+```
+
+Puis modifier, dans la méthode 
+```js
+renderBusBoard()
+```
+dans la condition, 
+```js
+if (rowLength < 15)
+```
+le nombre qui correspond aux nombre de lignes du tableau
 
 ---

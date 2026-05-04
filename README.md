@@ -83,7 +83,7 @@ Une fois toutes les **étapes** précédentes terminées :
 ```bash
 Lancement.bat
 ```
-Le backend, frontend ainsi que la page s'ouvre **automatiquement** sur les port que vous avez défini dans le **.env**
+Le BackEnd, FrontEnd ainsi que la page s'ouvre **automatiquement** sur les port que vous avez défini dans le **.env**
 
 --- 
 
@@ -94,7 +94,7 @@ Le backend, frontend ainsi que la page s'ouvre **automatiquement** sur les port 
 
 ## Modifier l'intervalle
 
-Pour modifier **l'intervalle de changement** d'écran il faut se rendre dans le fichier : 
+Pour modifier, **l'intervalle de changement** d'écran il faut se rendre dans le fichier : 
 ```bash
 sectionRotate.js
 ```
@@ -104,7 +104,8 @@ Ensuite, dans la méthode :
 ```js
 initSection()
 ```
-A la fin du **try** modifier le chiffre, il est sous le format **milisecondes** donc
+
+A la fin de la clasue **try** modifier le chiffre, il est sous le format **milisecondes** donc
 
 - 1 = 1 miliseconde
 - 10 = 1 centième
@@ -156,6 +157,6 @@ dans la condition,
 if (rowLength < 15)
 ```
 
-le chiffre qui correspond aux **nombre de lignes du tableau**.
+le chiffre qui correspond aux **nombres de lignes du tableau**.
 
 ---

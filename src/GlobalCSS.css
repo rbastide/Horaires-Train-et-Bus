@@ -114,6 +114,14 @@ body{
   gap:18px;
 }
 
+/* Heure du header */
+.TimeRealDate{
+  font-size:40px;
+  margin:0;
+  color:var(--White);
+  font-weight:700;
+}
+
 
 
 
@@ -389,9 +397,3 @@ body{
   color:var(--delayed-text);
 }
 
-.TimeRealDate{
-  font-size:40px;
-  margin:0;
-  color:var(--White);
-  font-weight:700;
-}

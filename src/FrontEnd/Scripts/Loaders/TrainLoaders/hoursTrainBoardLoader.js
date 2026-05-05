@@ -136,7 +136,7 @@ function renderTrainBoard(rows) {
  */
 window.loadHoursTrainBoard = async function () {
   try {
-    const data = await fetchTrainBoardData(10);
+    const data = await fetchTrainBoardData(3);
 
     /* Accepte soit un tableau direct, soit un objet contenant une propriété rows */
     const rows = Array.isArray(data) ? data : (data.rows || []);

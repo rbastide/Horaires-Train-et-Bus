@@ -12,11 +12,21 @@ const STOP_AREA_PERIGUEUX = window.APP_CONFIG?.STOP_AREA;
    Récupération des données importantes du train
    ========================= */
 
+const CACHE_KEY = 'train_board_cache';
+const CACHE_DURATION = 5 * 60 * 1000;
+
 /*
  * Récupère les prochains départs/arrivées pour la gare configurée.
  * Le paramètre count permet de limiter le nombre de lignes retournées.
  */
 async function fetchTrainBoardData(count = 10) {
+  const cached = JSON.parse(localStorage.getItem(CACHE_KEY));
+  const now = Date.now();
+
+  if( cached && now - cached.timestamp < CACHE_DURATION){
+    return cached.data;
+  }
+
   const url =
     `${API_BASE}/board` +
     `?stop_area=${encodeURIComponent(STOP_AREA_PERIGUEUX)}` +
@@ -29,7 +39,16 @@ async function fetchTrainBoardData(count = 10) {
     throw new Error(`HTTP ${response.status}`);
   }
 
-  return response.json();
+  const data = await response.json();
+
+  localStorage.setItem(CACHE_KEY,
+    JSON.stringify({
+      data,
+      timestamp: now,
+    })
+  )
+
+  return data;
 };
 
 /* =========================

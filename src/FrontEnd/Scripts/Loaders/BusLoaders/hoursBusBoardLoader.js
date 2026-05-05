@@ -116,7 +116,7 @@ function renderBusBoard(rows) {
   let rowLength = 0;
   rows.forEach((row) => {
     rowLength++;
-    if (rowLength < 7){
+    if (rowLength < 6){
     tbody.appendChild(buildBusRow(row));
     }
   });

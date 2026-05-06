@@ -131,3 +131,14 @@ export function getWaitingTime(startTime, endTime) {
 
   return `${hours}:${minutes}:${seconds}`;
 }
+
+
+// Création d'une liste d'arrets pour les requêtes SQL
+export function getListStops(stops){
+    let listStops = "";
+    stops.forEach(element => {
+        listStops += `'${element}',`;
+    });
+    listStops = listStops.slice(0, -1);
+    return listStops;
+}

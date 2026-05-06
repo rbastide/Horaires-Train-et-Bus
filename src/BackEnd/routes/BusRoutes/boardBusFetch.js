@@ -8,14 +8,20 @@ import { getStopIdStopCodeStopLabelOfEveryTrainStation } from "../../queries/get
 // Création du router
 const router = Router();
 
+
+
 // Route pour l'appel de l'API des Bus : "/busBoard"
 router.get("/busBoard", async(req , res) => {
     try{
+        // Arrêts de bus
+        const stopsBus = ['Gare SNCF', 'PEM'];
 
         // Variable contenant les données des bus
         const stops = await getStopIdStopCodeStopLabelOfEveryTrainStation();
         const lineCode = await getLineIdAndLineCode();
-        const destination = await getDestinationCodeAndLabel();
+        console.log(stopsBus);
+        const destination = await getDestinationCodeAndLabel(stopsBus);
+        console.log(destination);
         // Heure actuel sous le format HH:MM:SS
         const localTime = new Date().toLocaleTimeString("it-IT");
         const estimatedTime = await getEstimatedAndScheduledTime(localTime);

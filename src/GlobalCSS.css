@@ -91,7 +91,7 @@ body{
 
 /* Titre header */
 .site-title{
-  font-size:32px;
+  font-size:40px;
   margin:0;
   color:var(--White);
   font-weight:700;
@@ -116,17 +116,11 @@ body{
 
 /* Heure du header */
 .TimeRealDate{
-  font-size:40px;
+  font-size:50px;
   margin:0;
   color:var(--White);
   font-weight:700;
 }
-
-
-
-
-
-
 
 
 /* =========================

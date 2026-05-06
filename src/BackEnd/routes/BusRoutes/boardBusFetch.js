@@ -17,12 +17,12 @@ router.get("/busBoard", async(req , res) => {
         const stopsBus = ['Gare SNCF', 'PEM'];
 
         // Variable contenant les données des bus
-        const stops = await getStopIdStopCodeStopLabelOfEveryTrainStation();
-        const lineCode = await getLineIdAndLineCode();
+        const stops = await getStopIdStopCodeStopLabelOfEveryTrainStation(stopsBus);
+        const lineCode = await getLineIdAndLineCode(stopsBus);
         const destination = await getDestinationCodeAndLabel(stopsBus);
         // Heure actuel sous le format HH:MM:SS
         const localTime = new Date().toLocaleTimeString("it-IT");
-        const estimatedTime = await getEstimatedAndScheduledTime(localTime);
+        const estimatedTime = await getEstimatedAndScheduledTime(localTime,stopsBus);
 
         // Tableau vide ayant pour but de contenir toutes les lignes du tableau
         const rows = [];

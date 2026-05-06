@@ -181,4 +181,32 @@ if (rowLength < 15)
 
 le chiffre qui correspond aux **nombres de lignes du tableau**.
 
+## Ajouter un arrêts de bus
+
+Pour ajouter un arrêts de bus il faut :
+
+- Connaître le nom de l'arrêt
+
+Ensuite il faut se rendre dans le fichier 
+```bash
+boardBusFetch.js 
+```
+
+qui se trouve dans 
+```bash
+src/BackEnd/routes/busRoutes
+```
+
+Trouver la variable : 
+```js
+const stopsBus
+```
+
+et rajouter dans liste déjà fournit, le nom de l'arrêt entre ' ', exemple :
+
+```js
+const stopsBus = ['Gare SNCF', 'PEM', 'nom arrêt'];
+```
+
+
 ---

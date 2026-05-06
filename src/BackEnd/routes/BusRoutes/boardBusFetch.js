@@ -8,8 +8,6 @@ import { getStopIdStopCodeStopLabelOfEveryTrainStation } from "../../queries/get
 // Création du router
 const router = Router();
 
-
-
 // Route pour l'appel de l'API des Bus : "/busBoard"
 router.get("/busBoard", async(req , res) => {
     try{

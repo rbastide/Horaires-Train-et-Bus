@@ -90,7 +90,7 @@ function buildTrainRow(row) {
             isDelayed
             ? `
             <div class="DepartDelayed">
-             <p>${row.departure_base} ${row.origin}</p>
+             <p>${row.departure} ${row.origin}</p>
 
             <p class="delayedTime"><strong>${row.departure}</strong> ${row.origin}</p>
 

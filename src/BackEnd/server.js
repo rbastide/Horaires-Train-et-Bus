@@ -7,7 +7,7 @@ import { testDatabaseConnection } from "./services/databaseConnection.js"
 // Import des scripts des routes
 import departuresRouter from "./routes/TrainRoutes/departuresFetch.js";
 import journeysRouter from "./routes/TrainRoutes/journeysFetch.js";
-import boardRouter from "./routes/TrainRoutes/boardFetch.js";
+import boardRouter from "./routes/TrainRoutes/boardTrainFetch.js";
 import configRouter from "./services/config.js";
 import boardBusRouter from "./routes/BusRoutes/boardBusFetch.js"
 

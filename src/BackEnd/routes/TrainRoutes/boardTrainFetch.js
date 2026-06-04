@@ -41,41 +41,30 @@ router.get("/board", async (req, res) => {
     const disruptionMap = buildDisruptionMap(apiJson);
 
     const trainsOnly = departures.filter((d) => {
-      const isTrainDeparture = isTrain(d);
-      const isPerigueux =
-        d?.stop_point?.stop_area?.id === stop_area ||
-        d?.stop_point?.stop_area?.name === "Périgueux";
-      return isTrainDeparture && isPerigueux;
+      return isTrain(d)
     });
 
     const rows = [];
 
     for (let i = 0; i < trainsOnly.length; i++) {
       const d = trainsOnly[i];
-      const sdt = d.stop_date_time ?? {};
+      const stopDateTime = d.stop_date_time ?? {};
 
-      const depRT = sdt.departure_date_time;
-      const depBase = sdt.base_departure_date_time ?? depRT;
+      const depRT = stopDateTime.departure_date_time;
+      const depBase = stopDateTime.base_departure_date_time ?? depRT;
+
       const delay = delayMinutes(depRT, depBase);
-      const platform = sdt.platform ?? "--";
 
-      const lineCode =
-        d.route?.line?.code ||
-        d.display_informations?.code ||
-        d.display_informations?.label ||
-        "--";
+      const lineCode = d.display_informations?.code || "--";
 
       const tripShortName = d.display_informations?.trip_short_name;
+
       const terminusId = getTerminusId(d);
 
-      let destination =
-        terminusMap.get(terminusId) ||
-        disruptionMap.get(tripShortName)?.terminusName ||
-        d.display_informations?.direction?.split(" (")[0] ||
-        d.route?.direction?.stop_area?.name ||
-        "--";
+      let destination = d.route?.direction?.stop_area?.name || "--";
 
       let duration = "--";
+
       let arrival = disruptionMap.get(tripShortName)?.arrivalTime ?? "--:--";
 
       if (arrival === "--:--" && i < MAX_JOURNEYS_ENRICH && terminusId && depRT) {
@@ -104,10 +93,8 @@ router.get("/board", async (req, res) => {
 
       rows.push({
         line: lineCode,
-        platform,
         duration,
         departure: toHHMM(depRT),
-        departure_base: toHHMM(depBase),
         arrival,
         origin: "Périgueux",
         destination,
@@ -115,6 +102,7 @@ router.get("/board", async (req, res) => {
         status: delay > 0 ? `Retard ${delay} min` : "À l'heure",
       });
     }
+
 
     return res.json({
       stop_area,

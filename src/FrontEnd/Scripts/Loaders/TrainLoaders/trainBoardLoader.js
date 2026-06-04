@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log("HoursTrainBoard.html injecté avec succès");
 
     if (typeof window.loadHoursTrainBoard === "function") {
-      await window.loadHoursTrainBoard();
       console.log("Horaires train chargés");
     } else {
       console.warn("window.loadHoursTrainBoard n'est pas défini");

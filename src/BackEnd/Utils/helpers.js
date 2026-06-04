@@ -107,10 +107,11 @@ export function timeToSeconds(timeStr) {
 
 // Fonction récupérant le temps d'attente entre 2 temps 
 export function getWaitingTime(startTime, endTime) {
-  const startSeconds = startTime;
-  const endSeconds = endTime;
+  let startSeconds, finishSeconds;
+  startSeconds = startTime;
+  finishSeconds = endTime;
 
-  let diff = endSeconds - startSeconds;
+  let diff = finishSeconds - startSeconds;
 
   // si on passe au jour suivant
   if (diff < 0) {

@@ -49,7 +49,7 @@ async function fetchTrainBoardData(count = 10) {
   )
 
   return data;
-};
+}
 
 /* =========================
    Construction des lignes du tableau dans la section train
@@ -119,7 +119,7 @@ function buildTrainRow(row) {
   `;
 
   return tr;
-};
+}
 
 /* =========================
    Affichage de la partie train

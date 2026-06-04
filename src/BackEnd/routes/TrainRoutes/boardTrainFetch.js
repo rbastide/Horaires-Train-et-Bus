@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { getDeparturesJson, getJourneysJson } from "../../services/sncfApi.js";
 import { delayMinutes, toHHMM, formatDuration, isTrain, getTerminusId, buildDisruptionMap, buildTerminusMap } from "../../utils/helpers.js";
-import dotenv from "dotenv";
 
 // Variable Globales
 const router = Router();
@@ -37,7 +36,6 @@ router.get("/board", async (req, res) => {
 
     const apiJson = dep.json ?? {};
     const departures = apiJson.departures ?? [];
-    const terminusMap = buildTerminusMap(apiJson);
     const disruptionMap = buildDisruptionMap(apiJson);
 
     const trainsOnly = departures.filter((d) => {

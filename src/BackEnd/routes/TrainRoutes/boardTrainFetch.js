@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { getDeparturesJson, getJourneysJson } from "../../services/sncfApi.js";
-import { delayMinutes, toHHMM, formatDuration, isTrain, getTerminusId, buildDisruptionMap, buildTerminusMap } from "../../utils/helpers.js";
+import { delayMinutes, toHHMM, formatDuration, isTrain, getTerminusId, buildDisruptionMap } from "../../utils/helpers.js";
 
 // Variable Globales
 const router = Router();

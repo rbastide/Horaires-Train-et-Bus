@@ -67,14 +67,6 @@ function hhmmFromCompact(time) {
   return `${time.slice(0, 2)}:${time.slice(2, 4)}`;
 }
 
-// Fonction calculant le trajet
-export function buildTerminusMap(apiJson) {
-  const map = new Map();
-  for (const t of apiJson?.terminus ?? []) {
-    if (t?.id) map.set(t.id, t.name ?? t.label ?? "--");
-  }
-  return map;
-}
 
 export function buildDisruptionMap(apiJson) {
   const map = new Map();

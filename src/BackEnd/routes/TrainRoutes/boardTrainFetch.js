@@ -1,13 +1,12 @@
 import { Router } from "express";
 import { getDeparturesJson, getJourneysJson } from "../../services/sncfApi.js";
 import {
-  delayMinutes, toHHMM, formatDuration, isTrain, getTerminusId, buildDisruptionMap,
-  calculOfArrivalTimeAndDelayTime
+  delayMinutes, toHHMM, formatDuration, isTrain, getTerminusId,arrivalTimeDelayed
 } from "../../utils/helpers.js";
 
 // Variable Globales
 const router = Router();
-const MAX_JOURNEYS_ENRICH = 6;
+const MAX_JOURNEYS_ENRICH = 3;
 
 
 // Création de la route pour récupérer les informations demandé pour la section train
@@ -39,7 +38,6 @@ router.get("/board", async (req, res) => {
 
     const apiJson = dep.json ?? {};
     const departures = apiJson.departures ?? [];
-    const disruptionMap = buildDisruptionMap(apiJson);
 
     const trainsOnly = departures.filter((d) => {
       return isTrain(d)
@@ -59,48 +57,43 @@ router.get("/board", async (req, res) => {
 
         const lineCode = d.display_informations?.code || "--";
 
-        const tripShortName = d.display_informations?.trip_short_name;
-
         const terminusId = getTerminusId(d);
 
         let destination = d.route?.direction?.stop_area?.name || "--";
 
         let durationJourney = "--";
 
-        let arrival = disruptionMap.get(tripShortName)?.arrivalTime ?? "--:--";
+        let arrival = "--:--";
 
-        if (arrival === "--:--" && i < MAX_JOURNEYS_ENRICH && terminusId && departureRealTime) {
-          const j = await getJourneysJson({
-            token,
-            from: stop_area,
-            to: terminusId,
-            datetime: departureRealTime,
-          });
+        const j = await getJourneysJson({
+          token,
+          from: stop_area,
+          to: terminusId,
+          datetime: departureRealTime,
+        });
 
-          if (j.ok) {
-            const journeys = j.json?.journeys ?? [];
+        if (j.ok) {
+          const journeys = j.json?.journeys ?? [];
 
-            const matchedJourney =
-                journeys.find((x) => x?.departure_date_time === departureRealTime) ||
-                journeys[0];
+          const matchedJourney =
+              journeys.find((x) => x?.departure_date_time === departureRealTime) ||
+              journeys[0];
 
-            if (matchedJourney) {
-              durationJourney = formatDuration(matchedJourney.duration);
-              if (matchedJourney.arrival_date_time) {
-                arrival = toHHMM(matchedJourney.arrival_date_time);
-              }
+          if (matchedJourney) {
+
+            durationJourney = formatDuration(matchedJourney.duration);
+            if (matchedJourney.arrival_date_time) {
+              arrival = toHHMM(matchedJourney.arrival_date_time);
             }
           }
         }
-
-
         if (destination !== "Périgueux") {
           rows.push({
             line: lineCode,
             duration: durationJourney,
             departure_time: toHHMM(departureRealTime),
             departure_time_base: toHHMM(departureTimeFromBase),
-            arrival_time: calculOfArrivalTimeAndDelayTime(arrival, delay),
+            arrival_time: arrivalTimeDelayed(arrival, delay),
             arrival_time_base: arrival,
             origin: "Périgueux",
             destination,
@@ -110,9 +103,6 @@ router.get("/board", async (req, res) => {
         }
       }
     }
-
-    console.log(rows);
-
 
     return res.json({
       stop_area,

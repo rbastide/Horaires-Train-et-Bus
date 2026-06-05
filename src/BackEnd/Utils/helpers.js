@@ -9,6 +9,7 @@ export function toHHMM(dt) {
   if (!dt) return "--:--";
   return dt.slice(9, 11) + ":" + dt.slice(11, 13);
 }
+// Format italien
 export function toHHMMit(dt) {
   if (!dt) return "--:--";
   return dt.slice(0,5);
@@ -67,29 +68,6 @@ function hhmmFromCompact(time) {
   return `${time.slice(0, 2)}:${time.slice(2, 4)}`;
 }
 
-
-export function buildDisruptionMap(apiJson) {
-  const map = new Map();
-
-  for (const disruption of apiJson?.disruptions ?? []) {
-    for (const impacted of disruption?.impacted_objects ?? []) {
-      const tripName = impacted?.pt_object?.trip?.name;
-      const stops = impacted?.impacted_stops ?? [];
-      if (!tripName || stops.length === 0) continue;
-
-      const lastStop = stops[stops.length - 1];
-      map.set(tripName, {
-        terminusName: lastStop?.stop_point?.name ?? "--",
-        arrivalTime:
-          hhmmFromCompact(lastStop?.amended_arrival_time) ||
-          hhmmFromCompact(lastStop?.base_arrival_time),
-      });
-    }
-  }
-
-  return map;
-}
-
 // Conversion du temps en format hh:mm:ss en secondes
 export function timeToSeconds(timeStr) {
   const [time, period] = timeStr.split(" ");
@@ -136,7 +114,7 @@ export function getListStops(stops){
     return listStops;
 }
 
-export function calculOfArrivalTimeAndDelayTime(arrival_time, delay) {
+export function arrivalTimeDelayed(arrival_time, delay) {
   if (!arrival_time || typeof arrival_time !== "string" || !arrival_time.includes(":")) {
     return "--:--";
   }

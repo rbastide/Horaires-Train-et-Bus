@@ -50,8 +50,8 @@ router.get("/board", async (req, res) => {
         const d = trainsOnly[i];
         const stopDateTime = d.stop_date_time ?? {};
 
-        const departureRealTime = stopDateTime.departure_date_time; // Heure départ de la gare en temps réel
-        const departureTimeFromBase = stopDateTime.base_departure_date_time ?? departureRealTime; // Heure départ du quai de la gare | Si il existe on le prend sinon c departureRealTime
+        const departureRealTime = stopDateTime.departure_date_time;
+        const departureTimeFromBase = stopDateTime.base_departure_date_time ?? departureRealTime;
 
         const delay = delayMinutes(departureRealTime, departureTimeFromBase);
 
@@ -87,6 +87,8 @@ router.get("/board", async (req, res) => {
             }
           }
         }
+
+
         if (destination !== "Périgueux") {
           rows.push({
             line: lineCode,

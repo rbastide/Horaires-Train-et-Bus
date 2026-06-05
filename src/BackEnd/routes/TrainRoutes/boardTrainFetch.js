@@ -58,7 +58,7 @@ router.get("/board", async (req, res) => {
 
         const terminusId = getTerminusId(d);
 
-        let destination = d.route?.direction?.stop_area?.name || "--";
+        let destination = d.display_informations?.direction || "--";
 
         let durationJourney = "--";
 
@@ -88,7 +88,6 @@ router.get("/board", async (req, res) => {
         }
 
 
-        if (destination !== "Périgueux") {
           rows.push({
             line: lineCode,
             duration: durationJourney,
@@ -103,7 +102,6 @@ router.get("/board", async (req, res) => {
           });
         }
       }
-    }
 
     return res.json({
       stop_area,

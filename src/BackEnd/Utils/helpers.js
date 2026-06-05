@@ -135,3 +135,28 @@ export function getListStops(stops){
     listStops = listStops.slice(0, -1);
     return listStops;
 }
+
+export function calculOfArrivalTimeAndDelayTime(arrival_time, delay) {
+  if (!arrival_time || typeof arrival_time !== "string" || !arrival_time.includes(":")) {
+    return "--:--";
+  }
+  
+  const [hoursStr, minutesStr] = arrival_time.split(":");
+  let hours = parseInt(hoursStr, 10);
+  let minutes = parseInt(minutesStr, 10);
+
+  if (isNaN(hours) || isNaN(minutes) || isNaN(delay)) {
+    return "--:--";
+  }
+  minutes += delay;
+  
+  if (minutes >= 60) {
+    hours += Math.floor(minutes / 60);
+    minutes = minutes % 60;
+  }
+
+  const paddedHours = String(hours).padStart(2, "0");
+  const paddedMinutes = String(minutes).padStart(2, "0");
+  
+  return `${paddedHours}:${paddedMinutes}`;
+}

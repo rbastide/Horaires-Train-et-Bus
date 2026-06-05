@@ -48,64 +48,67 @@ router.get("/board", async (req, res) => {
     const rows = [];
 
     for (let i = 0; i < trainsOnly.length; i++) {
-      const d = trainsOnly[i];
-      const stopDateTime = d.stop_date_time ?? {};
+      if (rows.length < 3) {
+        const d = trainsOnly[i];
+        const stopDateTime = d.stop_date_time ?? {};
 
-      const departureRealTime = stopDateTime.departure_date_time; // Heure départ de la gare en temps réel
-      const departureTimeFromBase = stopDateTime.base_departure_date_time ?? departureRealTime; // Heure départ du quai de la gare | Si il existe on le prend sinon c departureRealTime
+        const departureRealTime = stopDateTime.departure_date_time; // Heure départ de la gare en temps réel
+        const departureTimeFromBase = stopDateTime.base_departure_date_time ?? departureRealTime; // Heure départ du quai de la gare | Si il existe on le prend sinon c departureRealTime
 
-      const delay = delayMinutes(departureRealTime, departureTimeFromBase);
+        const delay = delayMinutes(departureRealTime, departureTimeFromBase);
 
-      const lineCode = d.display_informations?.code || "--";
+        const lineCode = d.display_informations?.code || "--";
 
-      const tripShortName = d.display_informations?.trip_short_name;
+        const tripShortName = d.display_informations?.trip_short_name;
 
-      const terminusId = getTerminusId(d);
+        const terminusId = getTerminusId(d);
 
-      let destination = d.route?.direction?.stop_area?.name || "--";
+        let destination = d.route?.direction?.stop_area?.name || "--";
 
-      let durationJourney = "--";
+        let durationJourney = "--";
 
-      let arrival = disruptionMap.get(tripShortName)?.arrivalTime ?? "--:--";
+        let arrival = disruptionMap.get(tripShortName)?.arrivalTime ?? "--:--";
 
-      if (arrival === "--:--" && i < MAX_JOURNEYS_ENRICH && terminusId && departureRealTime) {
-        const j = await getJourneysJson({
-          token,
-          from: stop_area,
-          to: terminusId,
-          datetime: departureRealTime,
-        });
+        if (arrival === "--:--" && i < MAX_JOURNEYS_ENRICH && terminusId && departureRealTime) {
+          const j = await getJourneysJson({
+            token,
+            from: stop_area,
+            to: terminusId,
+            datetime: departureRealTime,
+          });
 
-        if (j.ok) {
-          const journeys = j.json?.journeys ?? [];
+          if (j.ok) {
+            const journeys = j.json?.journeys ?? [];
 
-          const matchedJourney =
-            journeys.find((x) => x?.departure_date_time === departureRealTime) ||
-            journeys[0];
+            const matchedJourney =
+                journeys.find((x) => x?.departure_date_time === departureRealTime) ||
+                journeys[0];
 
-          if (matchedJourney) {
-            durationJourney = formatDuration(matchedJourney.duration);
-            if (matchedJourney.arrival_date_time) {
-              arrival = toHHMM(matchedJourney.arrival_date_time);
+            if (matchedJourney) {
+              durationJourney = formatDuration(matchedJourney.duration);
+              if (matchedJourney.arrival_date_time) {
+                arrival = toHHMM(matchedJourney.arrival_date_time);
+              }
             }
           }
         }
+
+
+        if (destination !== "Périgueux") {
+          rows.push({
+            line: lineCode,
+            duration: durationJourney,
+            departure_time: toHHMM(departureRealTime),
+            departure_time_base: toHHMM(departureTimeFromBase),
+            arrival_time: calculOfArrivalTimeAndDelayTime(arrival, delay),
+            arrival_time_base: arrival,
+            origin: "Périgueux",
+            destination,
+            delay_minutes: delay,
+            status: delay > 0 ? `Retard ${delay} min` : "À l'heure",
+          });
+        }
       }
-
-
-
-      rows.push({
-        line: lineCode,
-        duration: durationJourney,
-        departure_time: toHHMM(departureRealTime),
-        departure_time_base : toHHMM(departureTimeFromBase),
-        arrival_time : calculOfArrivalTimeAndDelayTime(arrival,delay),
-        arrival_time_base : arrival,
-        origin: "Périgueux",
-        destination,
-        delay_minutes: delay,
-        status: delay > 0 ? `Retard ${delay} min` : "À l'heure",
-      });
     }
 
     console.log(rows);

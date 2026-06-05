@@ -6,7 +6,6 @@ import {
 
 // Variable Globales
 const router = Router();
-const MAX_JOURNEYS_ENRICH = 3;
 
 
 // Création de la route pour récupérer les informations demandé pour la section train

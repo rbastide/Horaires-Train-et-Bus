@@ -18,7 +18,7 @@ router.get("/busBoard", async(req , res) => {
         const stops = await getStopIdStopCodeStopLabelOfEveryTrainStation(stopsBus);
         const lineCode = await getLineIdAndLineCode(stopsBus);
         const destination = await getDestinationCodeAndLabel(stopsBus);
-        // Heure actuelle sous le format HH:MM:SS
+        // Heure actuelle sous le format HH MM SS
         const localTime = new Date().toLocaleTimeString("it-IT");
         const estimatedTime = await getEstimatedAndScheduledTime(localTime,stopsBus);
 

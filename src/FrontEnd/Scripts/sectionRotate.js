@@ -13,8 +13,8 @@ function getEl(id) {
 }
 
 // Fonction affichant le style
-// Si value = none -> Pas d'affichage
-// Si value = block -> Affichage
+// Si value = none → Pas d'affichage
+// Si value = block → Affichage
 function setDisplay(el, value) {
   if (el) {
     el.style.display = value;
@@ -31,7 +31,7 @@ function rotateSection() {
   const busSection = getEl('bus-section-placeholder');
   const busBoard = getEl('bus-board-body');
 
-  // Test si il existe les éléments suivant : trainSection, trainBoard, busSection, busBoard, busFooter
+  // Test s'il existe les éléments suivants : trainSection, trainBoard, busSection, busBoard, busFooter
   if (!trainSection || !trainBoard || !busSection || !busBoard) {
     console.warn('[sectionRotate] Rotation annulée : un ou plusieurs éléments sont absents du DOM.');
     return;
@@ -96,8 +96,6 @@ async function initSections() {
     console.log('Sections chargées - Rotation chaque 30 secondes');
 
     // Test si la rotation existe
-    // Si oui -> on la vide
-    // Sinon -> on fait rien
     if (rotationInterval) {
       clearInterval(rotationInterval);
     }

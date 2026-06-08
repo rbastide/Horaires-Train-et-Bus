@@ -327,7 +327,7 @@ body{
    COLONNE/LIGNES (TRAIN)
    ------------------------- */
 
-/* Colone Durée de la section Train  */
+/* Colonne durée de la section Train  */
 .Time{
   align-items:center;
   justify-content:center;
@@ -340,7 +340,7 @@ body{
 .Depart{
   font-size: 22px;
 }
-/* Parapgraphe de la colonne Heure départ/arrivé de la section train*/
+/* Paragraphe de la colonne Heure départ/arrivé de la section train*/
 .DepartDelayed p{
   align-items:center;
   justify-content:center;
@@ -350,7 +350,7 @@ body{
   line-height: 0.2;
 }
 
-/* Parapgraphe de la colonne Heure départ/arrivé de la section train (si en retard)*/
+/* Paragraphe de la colonne Heure départ/arrivé de la section train (si en retard)*/
 .DepartDelayed p.delayedTime{
   color: var(--delayed);
   font-size: 30px;

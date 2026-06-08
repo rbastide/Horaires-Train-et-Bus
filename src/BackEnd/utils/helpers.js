@@ -54,14 +54,14 @@ export function isTrain(dep) {
   return (dep.stop_point?.id || "").endsWith(":Train");
 }
 
-// Fonction récupérant l'id tu terminus
+// Fonction récupérant l'id du terminus
 export function getTerminusId(dep) {
   const links = dep.stop_date_time?.links ?? [];
   const term = links.find(l => l.category === "terminus" && l.id);
   return term?.id || null;
 }
 
-// Fonction de conversion des heures compact en format hhmm
+// Fonction de conversion des heures compactées en format hhmm
 function hhmmFromCompact(time) {
   if (!time || typeof time !== "string" || time.length < 4) return "--:--";
   return `${time.slice(0, 2)}:${time.slice(2, 4)}`;
@@ -103,7 +103,7 @@ export function getWaitingTime(startTime, endTime) {
 }
 
 
-// Création d'une liste d'arrets pour les requêtes SQL
+// Création d'une liste d'arrêts pour les requêtes SQL
 export function getListStops(stops){
     let listStops = "";
     stops.forEach(element => {
@@ -114,7 +114,7 @@ export function getListStops(stops){
 }
 
 
-// Calcul de l'heure d'arrivé si le train est en retard
+// Calcul de l'heure d'arrivée si le train est en retard
 export function arrivalTimeDelayed(arrival_time, delay) {
   if (!arrival_time || typeof arrival_time !== "string" || !arrival_time.includes(":")) {
     return "--:--";

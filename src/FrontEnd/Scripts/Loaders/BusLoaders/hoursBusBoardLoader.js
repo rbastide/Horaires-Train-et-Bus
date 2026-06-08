@@ -37,7 +37,7 @@ async function fetchBusBoardData() {
 function buildBusRow(row) {
   const tr = document.createElement("tr");
 
-  /* Un retard existe dès que delay_minutes est supérieur à 0 */
+  /* Un retard existe dès que delay_minutes est supérieur à 0. */
   const isAMinute = Number(row.timeToWait < 60);
 
 

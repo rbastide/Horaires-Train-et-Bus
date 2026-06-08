@@ -14,7 +14,7 @@ const STOP_AREA_PERIGUEUX = process.env.STOP_AREA
 // Création du routeur
 const router = Router();
 
-// Envoie de l'adresse du backend complète
+// Envoi de l'adresse du backend complète
 router.get("/config", (_req, res) => {
   const apiBase = `${API_BASE}:${PORT}/api`;
 

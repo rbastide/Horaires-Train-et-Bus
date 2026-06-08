@@ -22,7 +22,7 @@ export function query(sql, params = []) {
   });
 }
 
-// Test si la connextion à la base de données est possible
+// Test si la connection à la base de données est possible
 export function testDatabaseConnection() {
   return new Promise((resolve, reject) => {
     pool.getConnection((error, connection) => {

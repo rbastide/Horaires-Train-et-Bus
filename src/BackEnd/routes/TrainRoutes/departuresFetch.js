@@ -8,7 +8,6 @@ const router = Router();
 // Création de la route pour récupérer les départs
 router.get("/departures", async (req, res) => {
   try {
-    const stop_area = req.query.stop_area;
     const count = req.query.count ?? "10";
     const data_freshness = req.query.data_freshness ?? "realtime";
 
@@ -16,7 +15,6 @@ router.get("/departures", async (req, res) => {
 
     const { status, body } = await getDeparturesJson({
       token: process.env.API_SNCF_KEY,
-      stopArea: stop_area,
       count,
       freshness: data_freshness
     });

@@ -12,7 +12,7 @@ const router = Router();
 router.get("/board", async (req, res) => {
   try {
     const token = process.env.API_SNCF_KEY;
-    const stop_area = req.query.stop_area;
+    const stop_area = process.env.STOP_AREA;
     const count = Number(req.query.count ?? 10);
 
     if (!stop_area) {
@@ -21,7 +21,6 @@ router.get("/board", async (req, res) => {
 
     const dep = await getDeparturesJson({
       token,
-      stopArea: stop_area,
       count,
       freshness: "realtime",
     });

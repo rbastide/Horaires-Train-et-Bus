@@ -33,7 +33,7 @@ export function parseNavitiaDate(dt) {
 }
 
 
-// Fonction de calcule des minutes de retard
+// Fonction de calcul des minutes de retard
 export function delayMinutes(realtimeDT, baseDT) {
   if (!realtimeDT || !baseDT) return 0;
   const diff = (parseNavitiaDate(realtimeDT) - parseNavitiaDate(baseDT)) / 60000;
@@ -41,7 +41,7 @@ export function delayMinutes(realtimeDT, baseDT) {
 }
 
 
-// Fonction 
+// Fonction qui transforme les secondes en format : hh min
 export function formatDuration(seconds) {
   if (typeof seconds !== "number") return "--";
   const min = Math.round(seconds / 60);
@@ -114,6 +114,8 @@ export function getListStops(stops){
     return listStops;
 }
 
+
+// Calcul de l'heure d'arrivé si le train est en retard
 export function arrivalTimeDelayed(arrival_time, delay) {
   if (!arrival_time || typeof arrival_time !== "string" || !arrival_time.includes(":")) {
     return "--:--";

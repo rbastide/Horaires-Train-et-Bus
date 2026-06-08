@@ -5,6 +5,7 @@ import "dotenv/config";
 // Variables Globales
 const SNCF_BASE = process.env.SNCF_URL;
 const COVERAGE = process.env.COVERAGE;
+const STOP_AREA = process.env.STOP_AREA;
 
 // Connexion à l'api SNCF
 export async function sncfFetchJson({ token, path, query = {}, timeoutMs = 8000 }) {
@@ -35,10 +36,10 @@ export async function sncfFetchJson({ token, path, query = {}, timeoutMs = 8000 
 }
 
 // Permet de se connecter à l'API des départs de train
-export function getDeparturesJson({ token, stopArea, count = 10, freshness = "realtime" }) {
+export function getDeparturesJson({ token, count = 10, freshness = "realtime" }) {
   return sncfFetchJson({
     token,
-    path: `/coverage/${COVERAGE}/stop_areas/${encodeURIComponent(stopArea)}/departures`,
+    path: `/coverage/${COVERAGE}/stop_areas/${encodeURIComponent(STOP_AREA)}/departures`,
     query: { data_freshness: freshness, count },
   });
 }

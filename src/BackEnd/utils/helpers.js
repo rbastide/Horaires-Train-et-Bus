@@ -1,7 +1,6 @@
 // Fonction de connexion a l'api
 export function basicAuthHeader(token) {
-  const b64 = Buffer.from(`${token}:`).toString("base64");
-  return `Basic ${b64}`;
+  return `Basic ${btoa(`${token}:`)}`;
 }
 
 // Fonction de conversion des heures en format HHMM

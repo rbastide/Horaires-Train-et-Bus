@@ -8,7 +8,7 @@ import {
 const router = Router();
 
 
-// Création de la route pour récupérer les informations demandé pour la section train
+// Création de la route pour récupérer les informations demandées pour la section train
 router.get("/board", async (req, res) => {
   try {
     const token = process.env.API_SNCF_KEY;
@@ -19,22 +19,22 @@ router.get("/board", async (req, res) => {
       return res.status(400).json({ error: "Missing stop_area" });
     }
 
-    const dep = await getDeparturesJson({
+    const depJson = await getDeparturesJson({
       token,
       count,
       freshness: "realtime",
     });
 
-    if (!dep.ok) {
-      return res.status(dep.status).json({
+    if (!depJson.ok) {
+      return res.status(depJson.status).json({
         error: "Departures failed",
-        status: dep.status,
-        url: dep.url,
-        body: dep.json ?? dep.text,
+        status: depJson.status,
+        url: depJson.url,
+        body: depJson.json ?? depJson.text,
       });
     }
 
-    const apiJson = dep.json ?? {};
+    const apiJson = depJson.json ?? {};
     const departures = apiJson.departures ?? [];
 
     const trainsOnly = departures.filter((d) => {
@@ -63,22 +63,21 @@ router.get("/board", async (req, res) => {
 
         let arrival = "--:--";
 
-        const j = await getJourneysJson({
+        const jJson = await getJourneysJson({
           token,
           from: stop_area,
           to: terminusId,
           datetime: departureRealTime,
         });
 
-        if (j.ok) {
-          const journeys = j.json?.journeys ?? [];
+        if (jJson.ok) {
+          const journeys = jJson.json?.journeys ?? [];
 
           const matchedJourney =
               journeys.find((x) => x?.departure_date_time === departureRealTime) ||
               journeys[0];
 
           if (matchedJourney) {
-
             durationJourney = formatDuration(matchedJourney.duration);
             if (matchedJourney.arrival_date_time) {
               arrival = toHHMM(matchedJourney.arrival_date_time);

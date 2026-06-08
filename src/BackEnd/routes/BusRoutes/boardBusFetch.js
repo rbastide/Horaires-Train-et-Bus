@@ -18,7 +18,7 @@ router.get("/busBoard", async(req , res) => {
         const stops = await getStopIdStopCodeStopLabelOfEveryTrainStation(stopsBus);
         const lineCode = await getLineIdAndLineCode(stopsBus);
         const destination = await getDestinationCodeAndLabel(stopsBus);
-        // Heure actuel sous le format HH:MM:SS
+        // Heure actuelle sous le format HH:MM:SS
         const localTime = new Date().toLocaleTimeString("it-IT");
         const estimatedTime = await getEstimatedAndScheduledTime(localTime,stopsBus);
 
@@ -29,26 +29,29 @@ router.get("/busBoard", async(req , res) => {
         // Question d'un affichage plus cohérent
         estimatedTime?.forEach(esTime => {
 
-            // On cherche pour chaque valeur l'identifiant de l'arret équivalent 
+            // On cherche pour chaque valeur l'identifiant de l'arrêt équivalent
             const line = lineCode?.find(l => l.link_stop_start_id === esTime.stop_id);
             const dest = destination?.find(d => d.link_stop_start_id === esTime.stop_id);
             const stop = stops?.find(s => s.stop_id === esTime.stop_id);
 
-            // Si les valeurs suivantes exitstes alors 
+            // Si les valeurs suivantes existent alors
             // On récupère le temps estimé s'il existe, sinon on prend le temps prévu
-            // Ensuite on calcule le temps d'attente en secondes 
+            // Ensuite, on calcule le temps d'attente en secondes.
             if (stop && dest && line) {
                 const realTime = esTime.passing_time_estimated || esTime.passing_time_scheduled;
                 const waitedTime = timeToSeconds(getWaitingTime(timeToSeconds(localTime), timeToSeconds(realTime)));
-                
-                // On ajoute par ligne dans le tableau rows nos données importantes
-                rows.push({
-                    line: line.line_code,
-                    stops: stop.stop_label,
-                    destinations: dest?.route_destination_label || "--",
-                    passing_time: toHHMMit(realTime),
-                    timeToWait: waitedTime,
-                });
+
+                // On vérifie si l'heure de passage est supérieur à l'heure actuel
+                if (timeToSeconds(realTime) > timeToSeconds(localTime)) {
+                    // On ajoute par ligne dans le tableau rows nos données importantes
+                    rows.push({
+                        line: line.line_code,
+                        stops: stop.stop_label,
+                        destinations: dest?.route_destination_label || "--",
+                        passing_time: toHHMMit(realTime),
+                        timeToWait: waitedTime,
+                    });
+                }
             }
         });
 

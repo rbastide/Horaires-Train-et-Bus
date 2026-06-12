@@ -62,7 +62,7 @@ async function fetchTrainBoardData(count = 10) {
 function buildTrainRow(row) {
   const tr = document.createElement("tr");
 
-  /* Un retard existe dès que delay_minutes est supérieur à 0 */
+  /* Un retard existe dès que delay_minutes est supérieur à 0. */
   const isDelayed = Number(row.delay_minutes || 0) > 0;
 
   tr.innerHTML = `
